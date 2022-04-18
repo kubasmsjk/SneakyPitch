@@ -14,7 +14,7 @@ W projekcie użyto frameworku Django, a cała aplikacje udostępniono na serwerz
 *	agregacja i wyświetlanie statystyk drużyny. 
 
 
-# Autorzy:
+## Autorzy:
 * Jakub Mieczkowski ([@kubasmsjk]( https://github.com/kubasmsjk))
 * Bartosz Kraśniewski ([@bartekrul]( https://github.com/bartekrul))
 * Marcin Marciniak ([@Leckly]( https://github.com/Leckly))
