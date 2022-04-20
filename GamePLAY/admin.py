@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import Player, Team, Match
+from .models import Player, Team, Match, League
 
 
 # Register your models here.
 
 class PlayerInLIne(admin.StackedInline):
     model=Player
+
+
+class TeamsInLine(admin.StackedInline):
+    model=Team
 
 
 
@@ -28,3 +32,7 @@ class TeamAdmin(admin.ModelAdmin):
 class MatchAdmin(admin.ModelAdmin):
     search_fields = ['home_team__team_name','visiting_team__team_name']
     list_display = ['home_team', 'visiting_team', 'match_date', 'queue_number', 'match_score']
+
+@admin.register(League)
+class LeagueAdmin(admin.ModelAdmin):
+    list_display = ['league_name']
