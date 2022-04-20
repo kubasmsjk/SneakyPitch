@@ -4,7 +4,7 @@ from .models import Player, Team, Match
 
 # Register your models here.
 
-class PlayerInLIne(admin.TabularInline):
+class PlayerInLIne(admin.StackedInline):
     model=Player
 
 

@@ -18,10 +18,10 @@ class Team(models.Model):
 
 class Player(models.Model):
     PLAYER_POSITION = [
-        ('Go', 'Goalkeeper'),
-        ('De', 'Defender'),
-        ('Mi', 'Midfielder'),
-        ('St', 'Striker'),
+        ('GK', 'Goalkeeper'),
+        ('CB', 'Defender'),
+        ('CM', 'Midfielder'),
+        ('ST', 'Striker'),
     ]
 
     first_name = models.CharField(max_length=50, default='')
