@@ -1,5 +1,4 @@
 import pytz as pytz
-from django.db.models import Sum
 from django.db import models
 
 
@@ -93,11 +92,13 @@ class PlayerStatistic(models.Model):
     def __str__(self):
         return str(self.match)
 
+
 class TeamStatistic(models.Model):
     team_name = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team_name_in_TeamStatistic')
-    #number_of_goals = models.PositiveIntegerField(default=0)
-    #number_of_passes = models.PositiveIntegerField(default=0)
-    #number_of_fouls = models.PositiveIntegerField(default=0)
+
+    # number_of_goals = models.PositiveIntegerField(default=0)
+    # number_of_passes = models.PositiveIntegerField(default=0)
+    # number_of_fouls = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name = "TeamStatistic"
