@@ -2,32 +2,8 @@ import pytz as pytz
 from django.db import models
 
 
-class Team(models.Model):
-    team_name = models.CharField(max_length=50)
-    stadium_name = models.CharField(max_length=50)
-    coach_name = models.CharField(max_length=50)
-    creation_date = models.DateField(null=True)
-    points = models.IntegerField(default=0)
-
-    class Meta:
-        verbose_name = "Team"
-        verbose_name_plural = "Teams"
-
-    def __str__(self):
-        return self.team_name
-
-
 class League(models.Model):
-    league_name = models.CharField(max_length=50)
-
-    team1 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team1')
-    team2 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team2')
-    team3 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team3')
-    team4 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team4')
-    team5 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team5')
-    team6 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team6')
-    team7 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team7')
-    team8 = models.ForeignKey(Team, on_delete=models.CASCADE, default='', related_name='team8')
+    league_name = models.CharField(max_length=50,default='')
 
     class Meta:
         verbose_name = "League"
@@ -36,6 +12,19 @@ class League(models.Model):
     def __str__(self):
         return str(self.league_name)
 
+class Team(models.Model):
+    team_name = models.CharField(max_length=50)
+    stadium_name = models.CharField(max_length=50)
+    coach_name = models.CharField(max_length=50)
+    creation_date = models.DateField(null=True)
+    points = models.IntegerField(default=0)
+    league_name = models.ForeignKey(League, on_delete=models.CASCADE, default='')
+    class Meta:
+        verbose_name = "Team"
+        verbose_name_plural = "Teams"
+
+    def __str__(self):
+        return self.team_name
 
 class Player(models.Model):
     PLAYER_POSITION = [
