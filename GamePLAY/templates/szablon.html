@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kwachu</title>
+    {% load  static %}
+</head>
+<body>
+    <h1>
+        {% for m in menu %}
+            <p><a href = "/team/{{ m.id }}"> {{ m.team_name }} </a></p>
+        {% endfor %}
+    </h1>
+</body>
+</html>
