@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'SneakyPitch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dt394sqip47u6',
-        'USER': 'kmqkbpmevhzrlv',
-        'PASSWORD': '0b56c77bae5eea1bf0c82505c15d8dad427318ea6e65069522ce87c40dc575c4',
-        'HOST': 'ec2-52-212-228-71.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd7sjh596h3kfk9',
+        'USER': 'chhmrlmpqnnsfv',
+        'PASSWORD': '9c7b12739981d9ba8779bcd948456cbb2f63dc988aab5506568d5df4fa0049eb',
+        'HOST': 'ec2-52-214-23-110.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
