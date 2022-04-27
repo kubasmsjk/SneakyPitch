@@ -1,0 +1,21 @@
+<!doctype html>
+{% extends 'index.html' %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teams</title>
+
+    {% load  static %}
+</head>
+<body>
+
+{% block sidebar %}
+    <h1>
+        {% for m in menu %}
+            <p><a href=""> </a> {{ m.team_name }} </p>
+        {% endfor %}
+    </h1>
+{% endblock sidebar %}
+</body>
+</html>

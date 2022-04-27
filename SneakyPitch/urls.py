@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from GamePLAY.views import index,indexx
+from GamePLAY.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('szablon/', index, name='index'),
-    path('', indexx, name='indexx'),
+    path('teams/', teams, name='teams'),
+    path('', index, name='index'),
+    path('tables/', tables, name='tables'),
 ]

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block sidebar %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Tables</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tables.css' %}">
+</head>
+
+<body background="{% static 'img/test.jpg' %}">
+
+    <div class="team_points_table">
+        {% for m in menu %}
+            <table class="table">
+                <tr>
+                    <th>Team</th>
+                    <th>Points </th>
+                </tr>
+                <tr>
+                    <td>{{ m.team_name }}</td>
+                    <td>{{ m.points }}</td>
+                </tr>
+            </table>
+        {% endfor %}
+    </div>
+{% endblock sidebar %}
+</body>
+</html>
