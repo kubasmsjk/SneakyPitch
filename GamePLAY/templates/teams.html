@@ -41,12 +41,12 @@
                     </thead>
                     <tbody>
                     <tr scope="row">
-                        {% for m in menu %}
-                            <td>{{ m.team_name }}</td>
-                            <td>{{ m.stadium_name }}</td>
-                            <td>{{ m.coach_name }}</td>
-                            <td>{{ m.creation_date }}</td>
-                            <td>{{ m.league_name }}</td>
+                        {% for o in team_objects %}
+                            <td>{{ o.team_name }}</td>
+                            <td>{{ o.stadium_name }}</td>
+                            <td>{{ o.coach_name }}</td>
+                            <td>{{ o.creation_date }}</td>
+                            <td>{{ o.league_name }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
