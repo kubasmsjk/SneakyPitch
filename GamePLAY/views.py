@@ -7,3 +7,6 @@ def index(request):
     dane = { 'menu' : menu }
     return render(request, 'szablon.html', dane)
 
+def indexx(request):
+    return render(request, 'index.html')
+
