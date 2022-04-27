@@ -1,21 +1,66 @@
 <!doctype html>
-{% extends 'index.html' %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Teams</title>
-
-    {% load  static %}
-</head>
-<body>
-
+{% extends 'main.html' %}
 {% block sidebar %}
-    <h1>
-        {% for m in menu %}
-            <p><a href=""> </a> {{ m.team_name }} </p>
-        {% endfor %}
-    </h1>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+        {% load  static %}
+        <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+        <!-- Style -->
+        <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+        <title>Teams</title>
+    </head>
+    <body>
+
+
+    <div class="content">
+
+        <div class="container">
+
+
+            <div class="table-responsive">
+
+                <table class="table table-striped custom-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Team</th>
+                        <th scope="col">Stadium</th>
+                        <th scope="col">Coach</th>
+                        <th scope="col">Creation Date</th>
+                        <th scope="col">League</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr scope="row">
+                        {% for m in menu %}
+                            <td>{{ m.team_name }}</td>
+                            <td>{{ m.stadium_name }}</td>
+                            <td>{{ m.coach_name }}</td>
+                            <td>{{ m.creation_date }}</td>
+                            <td>{{ m.league_name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 {% endblock sidebar %}
 </body>
 </html>

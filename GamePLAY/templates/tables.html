@@ -1,32 +1,62 @@
-<!DOCTYPE html>
-{% extends 'index.html' %}
+<!doctype html>
+{% extends 'main.html' %}
 {% block sidebar %}
-<html lang="en">
-<head>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+        {% load  static %}
+        <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
-    <meta charset="UTF-8">
-    <title>Tables</title>
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/tables.css' %}">
-</head>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
-<body background="{% static 'img/test.jpg' %}">
+        <!-- Style -->
+        <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+        <title>Tables</title>
+    </head>
+    <body>
 
-    <div class="team_points_table">
-        {% for m in menu %}
-            <table class="table">
-                <tr>
-                    <th>Team</th>
-                    <th>Points </th>
-                </tr>
-                <tr>
-                    <td>{{ m.team_name }}</td>
-                    <td>{{ m.points }}</td>
-                </tr>
-            </table>
-        {% endfor %}
+
+    <div class="content">
+
+        <div class="container">
+            <h2 class="mb-5">Table #6</h2>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-striped custom-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Team</th>
+                        <th scope="col">Points</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr scope="row">
+                        {% for m in menu %}
+                            <td><a href="#">{{ m.team_name }}</a></td>
+                            <td>{{ m.points }}</td>
+                            <td><a href="#" class="more">Details</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
     </div>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 {% endblock sidebar %}
 </body>
 </html>

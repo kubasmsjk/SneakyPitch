@@ -1,14 +1,18 @@
-.team_points_table{
+table#table1, th, td {
+    color:black;
+    position:static ;
+    width:49%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #000000;
 
-    padding-top: 90px;
-    padding-left: 515px;
 }
-.table {
-    width: 500px;
-    padding-top: 50px;
-}
-body {
-     background-repeat: no-repeat;
-     background-position-x: center;
+
+#bg{
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
     background-color: darkolivegreen;
 }

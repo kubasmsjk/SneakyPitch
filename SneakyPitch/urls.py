@@ -19,7 +19,7 @@ from GamePLAY.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('teams/', teams, name='teams'),
-    path('', index, name='index'),
-    path('tables/', tables, name='tables'),
+    path('teams/', teamsView, name='teams'),
+    path('', mainView, name='main'),
+    path('tables/', tablesView, name='tables'),
 ]
