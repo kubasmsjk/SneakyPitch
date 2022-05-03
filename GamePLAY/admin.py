@@ -10,7 +10,7 @@ class PlayerInLIne(admin.StackedInline):
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'player_position', 'team']
+    list_display = ['first_name', 'last_name', 'player_position', 'team','number_of_goals']
     list_filter = ['team']
 
 

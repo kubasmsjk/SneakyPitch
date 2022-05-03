@@ -47,6 +47,24 @@
                             <td>{{ o.coach_name }}</td>
                             <td>{{ o.creation_date }}</td>
                             <td>{{ o.league_name }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <a onclick="myFunction()" class="more">Details</a>
+                                </div>
+                            </td>
+                            <tr id="myDropdown" class="dropdown-content">
+
+                                <tr>
+                                <td>{{ i.first_name }}</td>
+                                <td>{{ i.last_name }}</td>
+                                <td>{{ i.date_of_birth }}</td>
+                                <td>{{ i.player_position }}</td>
+                                <td>{{ i.country }}</td>
+                                <td>{{ i.team }}</td>
+                                <td>{{ i.number_of_goals }}</td>
+                                <tr>
+
+                            </tr>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -61,6 +79,7 @@
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/dropdownmenu.js' %}"></script>
 {% endblock sidebar %}
 </body>
 </html>

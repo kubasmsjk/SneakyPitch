@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'GamePLAY.apps.GameplayConfig',
     'django.contrib.admin',
     'django.contrib.auth',
