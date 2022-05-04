@@ -24,6 +24,4 @@ urlpatterns = [
     path('queues/', queuesView, name='queues'),
     path('teams/', teamsView, name='teams'),
     path('shootersRank/', shootersRankView, name='shootersRank'),
-    path("register/", register_request, name="register"),
-    path("login/", login_request, name="login"),
 ]
