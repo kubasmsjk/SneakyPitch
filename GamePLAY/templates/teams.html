@@ -25,11 +25,13 @@
     <div class="content">
 
         <div class="container">
-        <h2 class="mb-5">TEAMS</h2>
+            <h2 class="mb-5">TEAMS</h2>
 
 
             <div class="table-responsive">
-
+                <p>
+                    <a class="more">Details</a>
+                </p>
                 <table class="table table-striped custom-table">
                     <thead>
                     <tr>
@@ -48,13 +50,21 @@
                             <td>{{ o.coach_name }}</td>
                             <td>{{ o.creation_date }}</td>
                             <td>{{ o.league_name }}</td>
-                            <td>
-                                <div class="dropdown">
-                                    <a onclick="myFunction()" class="more">Details</a>
-                                </div>
-                            </td>
-                            <tr id="myDropdown" class="dropdown-content">
                             </tr>
+                            <tr>
+                                {% for i in o.player_set.all %}
+                                    <tr class="details-list">
+
+                                    <td>{{ i.first_name }}</td>
+                                    <td>{{ i.last_name }}</td>
+                                    <td>{{ i.date_of_birth }}</td>
+                                    <td>{{ i.player_position }}</td>
+                                    <td>{{ i.country }}</td>
+                                    <td>{{ i.team }}</td>
+                                {% endfor %}
+
+                                </tr>
+
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -64,7 +74,8 @@
         </div>
 
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>

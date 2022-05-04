@@ -22,9 +22,7 @@ def queuesView(request):
 
 def teamsView(request):
     team_objects = Team.objects.all()
-    player_objects = Player.objects.all()
-    dane_team = {'team_objects': team_objects,
-                 'player_objects': player_objects}
+    dane_team = {'team_objects': team_objects}
 
     return render(request, 'teams.html', dane_team)
 
