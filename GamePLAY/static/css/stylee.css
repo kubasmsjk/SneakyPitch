@@ -131,7 +131,9 @@ h2 {
   position: relative;
   display: inline-block;
 }
-
+.mb-5{
+    text-align: center;
+}
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
