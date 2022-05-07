@@ -33,7 +33,6 @@ class Player(models.Model):
         ('CM', 'Midfielder'),
         ('ST', 'Striker'),
     ]
-
     first_name = models.CharField(max_length=50, default='')
     last_name = models.CharField(max_length=50, default='')
     date_of_birth = models.DateField(null=True)

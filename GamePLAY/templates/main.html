@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>SneakyPitch</title>
+    {% load  static %}
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/media-queries.css' %}">
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" type="text/css" href="{% static 'ico/favicon.png' %}">
+    <link rel="apple-touch-icon-precomposed" type="text/css" sizes="144x144"
+          href="{% static 'ico/apple-touch-icon-144-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" type="text/css" sizes="114x114"
+          href="{% static 'ico/apple-touch-icon-114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" type="text/css" sizes="72x72"
+          href="{% static 'ico/apple-touch-icon-72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" type="text/css"
+          href="{% static 'ico/apple-touch-icon-57-precomposed.png' %}">
+
+</head>
+
+<body>
+
+<!-- Wrapper -->
+<div class="wrapper">
+
+    <!-- Sidebar -->
+
+    <nav class="sidebar">
+
+        <!-- close sidebar menu -->
+        <div class="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="logo">
+            <h3><a href="/"></a></h3>
+        </div>
+
+        <ul class="list-unstyled menu-elements">
+            <li class="active">
+                <a href="{% url 'main' %}"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+                <a href="{% url 'tables' %}"><i class="fa fa-table"></i>Tables</a>
+            </li>
+            <li>
+                <a href="{% url 'queues' %}"><i class="fa fa-th-list"></i>Queues</a>
+            </li>
+            <li>
+                <a href="{% url 'teams' %}"><i class="fa fa-users"></i>Teams</a>
+            </li>
+            <li>
+                <a href="{% url 'shootersRank' %}"><i class="fa fa-ranking-star"></i>Best shooters</a>
+            </li>
+            <li>
+                <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                   role="button" aria-controls="otherSections">
+                    <i class="fa fa-chart-bar"></i>Statistics
+                </a>
+                <ul class="collapse list-unstyled" id="otherSections">
+                    <li>
+                        <a class="scroll-link" href="#section-3">Team statistic</a>
+                    </li>
+                    <li>
+                        <a class="scroll-link" href="#section-4">Player statistics</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="to-top">
+            <a class="btn btn-primary btn-customized-3" href="#" role="button">
+                <i class="fas fa-arrow-up"></i> Top
+            </a>
+        </div>
+
+
+    </nav>
+
+    <!-- End sidebar -->
+
+    <!-- Dark overlay -->
+    <div class="overlay"></div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- open sidebar menu -->
+        <a class="btn btn-primary btn-customized open-menu" href="#" role="button">
+            <i class="fas fa-align-left"></i> <span>Menu</span>
+        </a>
+        {% block sidebar %}
+            <!-- Top content -->
+            <div class="top-content section-container" id="top-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                            <h1 class="wow fadeIn">SneakyPitch </h1>
+                            <div class="description wow fadeInLeft">
+                                <p>
+                                    Just do it! Create your team.
+                                </p>
+                            </div>
+                            <div class="buttons wow fadeInUp">
+                                <a class="btn btn-primary btn-customized scroll-link" href="#section-1" role="button">
+                                    <i class="fas fa-book-open"></i> Sign in
+                                </a>
+                                <a class="btn btn-primary btn-customized-2 scroll-link" href="#section-3" role="button">
+                                    <i class="fa fa-user-pen"></i> Register
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section-1-container section-container" id="section-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col section-1 section-description wow fadeIn">
+                            <h2>What We Do</h2>
+                            <div class="divider-1 wow fadeInUp"><span></span></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 section-1-box wow fadeInUp">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="section-1-box-icon">
+                                        <i class="fas fa-magic"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h3>Branding</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 section-1-box wow fadeInDown">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="section-1-box-icon">
+                                        <i class="fas fa-cog"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h3>Web design</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 section-1-box wow fadeInUp">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="section-1-box-icon">
+                                        <i class="fab fa-twitter"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h3>Social media</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="footer-container">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col">
+                            Copyright &copy; 2022 Sneakypitch.pl
+                        </div>
+
+                    </div>
+                </div>
+
+            </footer>
+        {% endblock sidebar %}
+    </div>
+    <!-- End content -->
+
+</div>
+<!-- End wrapper -->
+
+<!-- Javascript -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.0.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.backstretch.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+
+</body>
+
+</html>
