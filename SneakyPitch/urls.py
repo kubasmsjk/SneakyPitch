@@ -28,10 +28,8 @@ urlpatterns = [
     path('queues/', queuesView, name='queues'),
     path('teams/', teamsView, name='teams'),
     path('shootersRank/', shootersRankView, name='shootersRank'),
-<<<<<<< HEAD
-=======
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', registerView, name='register'),
 
->>>>>>> marcin
+
 ]

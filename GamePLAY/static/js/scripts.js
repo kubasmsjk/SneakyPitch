@@ -85,8 +85,6 @@ jQuery(document).ready(function() {
         Background slideshow
     */
 	$('.top-content').backstretch("/static/img/backgrounds/1.jpg");
-    $('.section-4-container').backstretch("/static/img/backgrounds/2.jpg");
-    $('.section-6-container').backstretch("/static/img/backgrounds/1.jpg");
     
     /*
 	    Wow

@@ -5,25 +5,20 @@ from django.urls import reverse
 
 from .forms import CustomUserCreationForm
 from .models import *
-<<<<<<< HEAD
 
-=======
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 import operator
->>>>>>> marcin
+
 
 # Create your views here.
 def mainView(request):
     return render(request, 'main.html')
 
-<<<<<<< HEAD
-
-=======
 @login_required(login_url='login')
->>>>>>> marcin
+
 def tablesView(request):
     team_objects = Team.objects.all().order_by('-points')
     context = {
@@ -48,10 +43,8 @@ def shootersRankView(request):
     context = {
         'player_rank': player_rank
     }
-<<<<<<< HEAD
+
     return render(request, 'shootersRank.html', context)
-=======
-    return render(request, 'shootersRank.html',context)
 
 def registerView(request):
     if request.method == 'GET':
@@ -105,4 +98,3 @@ def registerView(request):
 #     logout(request)
 #     messages.info(request,"You have successfully logged out.")
 #     return redirect("main")
->>>>>>> marcin
