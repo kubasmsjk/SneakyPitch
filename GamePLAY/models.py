@@ -94,3 +94,9 @@ class TeamStatistic(models.Model):
 
     def __str__(self):
         return str(self.match)
+class StaticItems(models.Model):
+    main_background_image=models.ImageField(blank=True,null=True)
+    link = "Edit"
+    class Meta:
+        verbose_name = "StaticItem"
+        verbose_name_plural = "StaticItems"

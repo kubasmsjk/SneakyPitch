@@ -94,7 +94,9 @@
         </a>
         {% block sidebar %}
             <!-- Top content -->
-            <div class="top-content section-container" id="top-content">
+            {% for o in static_items %}
+                <div class="top-content section-container" id="top-content" data-value="{{ o.main_background_image.url }}">
+                {% endfor %}
                 <div class="container">
                     <div class="row">
                         <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">

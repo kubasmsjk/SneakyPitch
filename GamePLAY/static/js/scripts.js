@@ -84,46 +84,13 @@ jQuery(document).ready(function() {
     /*
         Background slideshow
     */
-	$('.top-content').backstretch("/static/img/backgrounds/1.jpg");
+	var val = document.getElementById("top-content").getAttribute('data-value');
+	$('.top-content').backstretch(val);
     
     /*
 	    Wow
 	*/
 	new WOW().init();
-	
-	/*
-	    Contact form
-	*/
-	$('.section-6-form form input[type="text"], .section-6-form form textarea').on('focus', function() {
-		$('.section-6-form form input[type="text"], .section-6-form form textarea').removeClass('input-error');
-	});
-	$('.section-6-form form').submit(function(e) {
-		e.preventDefault();
-	    $('.section-6-form form input[type="text"], .section-6-form form textarea').removeClass('input-error');
-	    var postdata = $('.section-6-form form').serialize();
-	    $.ajax({
-	        type: 'POST',
-	        url: '/static/contact.php',
-	        data: postdata,
-	        dataType: 'json',
-	        success: function(json) {
-	            if(json.emailMessage != '') {
-	                $('.section-6-form form .contact-email').addClass('input-error');
-	            }
-	            if(json.subjectMessage != '') {
-	                $('.section-6-form form .contact-subject').addClass('input-error');
-	            }
-	            if(json.messageMessage != '') {
-	                $('.section-6-form form textarea').addClass('input-error');
-	            }
-	            if(json.emailMessage == '' && json.subjectMessage == '' && json.messageMessage == '') {
-	                $('.section-6-form form').fadeOut('fast', function() {
-	                    $('.section-6-form').append('<p>Thanks for contacting us! We will get back to you very soon.</p>');
-	                    $('.section-6-container').backstretch("resize");
-	                });
-	            }
-	        }
-	    });
-	});
+
 	
 });

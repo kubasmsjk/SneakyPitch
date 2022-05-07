@@ -15,7 +15,9 @@ import operator
 
 # Create your views here.
 def mainView(request):
-    return render(request, 'main.html')
+    static_items=StaticItems.objects.all()
+    dane_items = {'static_items': static_items}
+    return render(request, 'main.html', dane_items)
 
 @login_required(login_url='login')
 

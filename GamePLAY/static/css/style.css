@@ -125,7 +125,7 @@ img {
     display: inline-block;
     width: 172px;
     height: 34px;
-    background: url(../img/logo@2x.png) left top no-repeat;
+    background: url(../img/logo.png) left top no-repeat;
     border: 0;
     text-indent: -999999px;
 }

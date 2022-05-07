@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Player, Team, Match, League, PlayerStatistic, TeamStatistic
-
+from .models import *
 
 # Register your models here.
 
@@ -42,3 +41,10 @@ class PlayerStatisticAdmin(admin.ModelAdmin):
 @admin.register(TeamStatistic)
 class TeamStatisticAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(StaticItems)
+class StaticItems(admin.ModelAdmin):
+    list_display = ['main_background_image', 'link']
+    list_display_links = ['link']
+    list_editable = ['main_background_image']
+
