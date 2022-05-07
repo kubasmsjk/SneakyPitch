@@ -13,9 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
+from django.template.backends import django
+from django.urls import path, include
 from GamePLAY.views import *
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +28,10 @@ urlpatterns = [
     path('queues/', queuesView, name='queues'),
     path('teams/', teamsView, name='teams'),
     path('shootersRank/', shootersRankView, name='shootersRank'),
+<<<<<<< HEAD
+=======
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', registerView, name='register'),
+
+>>>>>>> marcin
 ]
