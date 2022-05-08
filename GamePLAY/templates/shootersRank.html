@@ -1,14 +1,14 @@
 <!doctype html>
 {% extends 'main.html' %}
 {% block sidebar %}
+    {% load  static %}
     <html lang="en">
     <head>
+    {% block head %}
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-        {% load  static %}
-        <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
         <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 
@@ -17,7 +17,8 @@
 
         <!-- Style -->
         <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
-        <title>Teams</title>
+        <title>{% block title %}Shooters Rank{% endblock %}</title>
+        {% endblock head %}
     </head>
     <body>
 
@@ -25,7 +26,7 @@
     <div class="content">
 
         <div class="container">
-        <h2 class="mb-5">TOP 10 SHOOTERS</h2>
+            <h2 class="mb-5">TOP 10 SHOOTERS</h2>
 
 
             <div class="table-responsive">
@@ -56,10 +57,10 @@
 
     </div>
 
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+    {% block js %}
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+    {% endblock js %}
 {% endblock sidebar %}
 </body>
 </html>

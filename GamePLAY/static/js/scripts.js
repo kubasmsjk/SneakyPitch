@@ -81,16 +81,7 @@ jQuery(document).ready(function() {
 		offset: '-5'
 	});
 
-    /*
-        Background slideshow
-    */
-	var val = document.getElementById("top-content").getAttribute('data-value');
-	$('.top-content').backstretch(val);
-    
-    /*
-	    Wow
-	*/
-	new WOW().init();
+
 
 	
 });
