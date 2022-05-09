@@ -272,7 +272,13 @@ a.btn-customized-3 i {
 /***** Footer *****/
 
 footer {
-    padding: 25px 0;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    color: #ffffff;
 }
 
 
