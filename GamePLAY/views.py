@@ -30,7 +30,9 @@ def tablesView(request):
 
 
 def queuesView(request):
-    return render(request, 'queues.html')
+    queue_objects = Match.objects.all().order_by('queue_number', 'match_date')
+    dane_queue = {'queue_objects': queue_objects}
+    return render(request, 'queues.html', dane_queue)
 
 
 def teamsView(request):
