@@ -51,6 +51,6 @@ class TeamStatisticAdmin(admin.ModelAdmin):
 
 @admin.register(StaticItems)
 class StaticItems(admin.ModelAdmin):
-    list_display = ['main_background_image', 'link']
+    list_display = ['main_background_image','contact_us_background_image', 'link']
     list_display_links = ['link']
-    list_editable = ['main_background_image']
+    list_editable = ['main_background_image','contact_us_background_image']

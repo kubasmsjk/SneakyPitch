@@ -146,6 +146,7 @@ class TeamStatistic(models.Model):
 
 class StaticItems(models.Model):
     main_background_image = models.ImageField(blank=True, null=True)
+    contact_us_background_image = models.ImageField(blank=True, null=True)
     link = "Edit"
 
     class Meta:
