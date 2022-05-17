@@ -10,7 +10,8 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/media-queries.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% endblock head %}
@@ -111,15 +112,16 @@
                         </p>
                     </div>
                     <div class="buttons wow fadeInUp">
-                        <a href="/accounts/login">
-                            <button class="">Log in</button>
-                        </a>
-                        <a href="/accounts/logout">
-                            <button class="">Log out</button>
-                        </a>
-                        <a href="/register">
-                            <button class="">Register</button>
-                        </a>
+                        {% if user.is_authenticated %}
+                            <a href="/accounts/logout">
+                                <button class="">Log out</button>
+                            </a>
+                        {% else %}
+                            <iframe src="{% url 'login' %}"
+                                    style="border: none;border-radius: 10px; height: 430px; width: 300px;"
+                                    title="Login form"></iframe>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ def mainView(request):
     dane_items = {'static_items': static_items}
     return render(request, 'main.html', dane_items)
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 
 def tablesView(request):
     team_objects = Team.objects.all().order_by('-points')
