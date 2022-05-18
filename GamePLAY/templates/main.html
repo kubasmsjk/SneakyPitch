@@ -23,6 +23,7 @@
 
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" type="text/css" href="{% static 'ico/favicon.png' %}">
+
 </head>
 
 <body>
@@ -120,11 +121,51 @@
                                 <button class="">Log out</button>
                             </a>
                         {% else %}
-                            <iframe id="iframe" src="{% url 'login' %}"
-                                    style="border: none;border-radius: 10px; height: 430px; width: 300px;"
-                                    title="Login form"></iframe>
+                            <div style="background: none;" id="one">
+                                <form action="{% url 'login' %}" method="post" style="background-color: #c4c4c4;">
+                                    {% csrf_token %}
+                                    <div class="form-floating">
+
+                                        <input type="text" id="username" name="username" placeholder="Username">
+                                    </div>
+                                    <div class="form-floating">
+
+                                        <input type="text" id="password" name="password" placeholder="Password">
+                                    </div>
+
+                                    <button id="loginButton" class="w-100 btn btn-lg btn-primary" type="submit" on>Sign
+                                        in
+                                    </button>
+                                    <div class="col-12 text-center">
+                                        <p class="mb-0 mt-3">
+                                            <small class="text-dark mr-2">Don't have an account ?</small>
+                                            <a href="{% url 'register' %}" class="text-dark font-weight-bold">Sign
+                                                Up</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+{#                            <div style="background: none; display: none" ; id="two">#}
+{#                                <a href="/accounts/logout">#}
+{#                                    <button class="">Log out</button>#}
+{#                                </a>#}
+{#                            </div>#}
                         {% endif %}
 
+{#                        <script>#}
+{#                            window.onload = function (e) {#}
+{#                                const zalogowany = false;#}
+{#                                if (zalogowany) {#}
+{#                                    document.getElementById("one").style.display = "none";#}
+{#                                    document.getElementById("two").style.display = "block";#}
+{#                                }#}
+{#                            }#}
+{#                            document.getElementById("loginButton").addEventListener("click", function (e) {#}
+{#                                //logowanie, weryfikacja#}
+{#                                document.getElementById("one").style.display = "none";#}
+{#                                document.getElementById("two").style.display = "block";#}
+{#                            });#}
+{#                        </script>#}
                     </div>
                 </div>
             </div>
@@ -202,7 +243,7 @@
                 <div class="col-md-5 section-2-box wow fadeInUp">
                     <h3>By eMail</h3>
                     <div class="section-2-form">
-                        <form role="form"  method="post">
+                        <form role="form" method="post">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="sr-only" for="contact-email">Email</label>
