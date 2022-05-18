@@ -1,18 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.urls import reverse
-
 from .forms import CustomUserCreationForm
 from .models import *
-
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-import operator
 from django.core.mail import send_mail
-from django.conf import settings
 
 
 # Create your views here.
@@ -27,15 +20,13 @@ def mainView(request):
 
         message = request.POST['message']
 
-
         send_mail(subject,
                   message,
                   email,
-                  ['pinon23161@dakcans.com'])
+                  ['kwachu2234@gmail.com'])
     return render(request, 'main.html', dane_items)
 
 
-@login_required(login_url='login')
 def tablesView(request):
     team_objects = Team.objects.all().order_by('-points')
     context = {
@@ -84,6 +75,8 @@ def registerView(request):
             return render(request, 'register.html', context)
 
     return render(request, 'register.html', {})
+
+
 # def register_request(request):
 #     if request.method == "POST":
 #         form = NewUserForm(request.POST)
@@ -95,26 +88,21 @@ def registerView(request):
 #         messages.error(request,"Unsuccessful registration. Invalid information.")
 #     form = NewUserForm()
 #     return render(request=request, template_name="main.html", context={"register_form":form})
-#
-# def login_request(request):
-#     if request.method == "POST":
-#         form = AuthenticationForm(request, data = request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data.get('username')
-#             password = form.cleaned_data.get('password')
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 login(request, user)
-#                 messages.info(request, f"You are now logged in as {username}.")
-#                 return redirect("main")
-#             else:
-#                 messages.error(request,"Invalid username or password.")
-#         else:
-#             messages.error(request,"Invalid username or password.")
-#     form = AuthenticationForm()
-#     return render(request=request, template_name="login.html", context={"login_form":form})
-#
-# def logout_request(request):
-#     logout(request)
-#     messages.info(request,"You have successfully logged out.")
-#     return redirect("main")
+
+def login_request(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect("main")
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="main.html", context={"login_form": form})

@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.template.backends import django
 from django.urls import path, include
 from GamePLAY.views import *
+from django.contrib.auth import views as auth_views
 
 
 
@@ -31,6 +32,7 @@ urlpatterns = [
     path('shootersRank/', shootersRankView, name='shootersRank'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', registerView, name='register'),
+    path('login/', login_request, name='login'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

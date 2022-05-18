@@ -419,55 +419,103 @@ a.btn-customized-3 i {
 
 /***** Section 1 *****/
 
-.section-1-box { padding-top: 30px; text-align: left; }
+.section-1-box {
+    padding-top: 30px;
+    text-align: left;
+}
 
 .section-1-box .section-1-box-icon {
-	width: 80px; height: 80px; margin: 0 auto;
-	border: 1px solid #f35b3f;
-    font-size: 40px; color: #f35b3f; line-height: 78px; text-align: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border: 1px solid #f35b3f;
+    font-size: 40px;
+    color: #f35b3f;
+    line-height: 78px;
+    text-align: center;
     border-radius: 50%;
 }
 
-.section-1-box h3 { margin-top: 0; padding: 0 0 10px 0; }
+.section-1-box h3 {
+    margin-top: 0;
+    padding: 0 0 10px 0;
+}
 
 /***** Section 2 *****/
 
-.section-2-box { padding-top: 30px; text-align: left; }
+.section-2-box {
+    padding-top: 30px;
+    text-align: left;
+}
 
-.section-2-box h3 { margin-top: 0; }
+.section-2-box h3 {
+    margin-top: 0;
+}
+
 /* contact form */
-.section-2-form { padding-top: 20px; text-align: left; }
+.section-2-form {
+    padding-top: 20px;
+    text-align: left;
+}
 
 .section-2-form input[type="text"],
 .section-2-form textarea {
-    background: none; border: 1px solid #fff;
-    font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300; color: #fff;
+    background: none;
+    border: 1px solid #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
     box-shadow: none;
     transition: all .3s;
 }
 
-.section-2-form textarea { height: 90px; }
+.section-2-form textarea {
+    height: 90px;
+}
 
 .section-2-form input[type="text"]:focus,
-.section-2-form textarea:focus { outline: 0; background: #fff; border: 1px solid #fff; color: #888; box-shadow: none; }
+.section-2-form textarea:focus {
+    outline: 0;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #888;
+    box-shadow: none;
+}
 
 .section-2-form input[type="text"].input-error,
-.section-2-form textarea.input-error { border-color: #f35b3f; }
+.section-2-form textarea.input-error {
+    border-color: #f35b3f;
+}
 
 .section-2-form input[type="text"]::-moz-placeholder,
-.section-2-form textarea::-moz-placeholder { color: #ccc; font-style: italic; }
+.section-2-form textarea::-moz-placeholder {
+    color: #ccc;
+    font-style: italic;
+}
 
 .section-2-form input[type="text"]:-ms-input-placeholder,
-.section-2-form textarea:-ms-input-placeholder { color: #ccc; font-style: italic; }
+.section-2-form textarea:-ms-input-placeholder {
+    color: #ccc;
+    font-style: italic;
+}
 
 .section-2-form input[type="text"]::-webkit-input-placeholder,
-.section-2-form textarea::-webkit-input-placeholder { color: #ccc; font-style: italic; }
+.section-2-form textarea::-webkit-input-placeholder {
+    color: #ccc;
+    font-style: italic;
+}
 
 .section-2-form button.btn-customized {
-	padding: .75rem 1.5rem;
-	background: #f35b3f; border: 0; border-radius: 4px;
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px; font-weight: 300; color: #fff; box-shadow: none;
+    padding: .75rem 1.5rem;
+    background: #f35b3f;
+    border: 0;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    box-shadow: none;
 }
 
 .section-2-form button.btn-customized:hover,
@@ -477,16 +525,31 @@ a.btn-customized-3 i {
 .section-2-form button.btn-customized.active:focus,
 .section-2-form button.btn.btn-primary:not(:disabled):not(.disabled):active,
 .section-2-form button.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
-	outline: 0; background: #cd533d; background: rgba(243, 91, 63, 0.7); border: 0; color: #fff; box-shadow: none;
+    outline: 0;
+    background: #cd533d;
+    background: rgba(243, 91, 63, 0.7);
+    border: 0;
+    color: #fff;
+    box-shadow: none;
 }
 
-.section-2-form button.btn-customized i { margin-right: 5px; }
+.section-2-form button.btn-customized i {
+    margin-right: 5px;
+}
+
 /* end contact form */
 
-.section-2-social { padding-top: 20px; }
+.section-2-social {
+    padding-top: 20px;
+}
 
 .section-2-social a:hover,
-.section-2-social a:focus { background: #ccc; background: rgba(255, 255, 255, 0.5); border: 0; color: #555; }
+.section-2-social a:focus {
+    background: #ccc;
+    background: rgba(255, 255, 255, 0.5);
+    border: 0;
+    color: #555;
+}
 
 /***** Footer *****/
 
@@ -494,3 +557,102 @@ footer {
     padding: 10px 0;
 }
 
+/***** Login Form *****/
+
+
+.form-floating input[type="text"] {
+    background: none;
+    border: 1px solid #545b62;
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 399;
+    box-shadow: none;
+    color: #000000;
+    border-radius: 4px;
+}
+
+.form-floating {
+    padding-top: 5px;
+}
+
+.form-login {
+    background-color: #ffffff;
+    height: 250px;
+    width: 300px;
+    margin: auto;
+    border: 1px solid #000000;
+    border-radius: 25px;
+    opacity: 0.85;
+}
+
+.input-login::placeholder {
+    color: #0b2e13;
+    font-weight: 300;
+}
+
+button.btn-customized {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0.75rem 1.5rem;
+    background: #f35b3f;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    box-shadow: none;
+}
+
+button.button-logout {
+    position: fixed;
+    top: 0;
+    right: 0;
+    top: 20px;
+    right: 10px;
+    z-index: 997;
+
+}
+#password{
+    -webkit-text-security: disc;
+}
+#password1 {
+    -webkit-text-security: disc;
+}
+#password2{
+    -webkit-text-security: disc;
+}
+/**** Register Form  ****/
+.form-register {
+    background-color: #ffffff;
+    margin: auto;
+    border: 1px solid #000000;
+    border-radius: 25px;
+    opacity: 0.85;
+    height: auto;
+    width: 50%;
+}
+.form-floating input[type="text"] {
+    background: none;
+    border: 1px solid #545b62;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 399;
+    box-shadow: none;
+    color: #000000;
+    border-radius: 4px;
+}
+.form-floating-register{
+    padding-top: 5px;
+    padding-left: 30px;
+}
+.input-register::placeholder {
+    color: #0b2e13;
+    font-weight: 300;
+}
+.one{
+    display: block;
+}
+.two{
+    display: none;
+}
