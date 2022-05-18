@@ -57,6 +57,9 @@
                 <a href="{% url 'teams' %}"><i class="fa fa-users"></i>Teams</a>
             </li>
             <li>
+                <a class="scroll-link" href="#section-2"><i class="fa fa-users"></i>Contact us</a>
+            </li>
+            <li>
                 <a href="{% url 'shootersRank' %}"><i class="fa fa-ranking-star"></i>Best shooters</a>
             </li>
             <li>
@@ -108,7 +111,7 @@
                     <h1 class="wow fadeIn">SneakyPitch </h1>
                     <div class="description wow fadeInLeft">
                         <p>
-                            Just do it! Create your team.
+                            Just do it! Create your league.
                         </p>
                     </div>
                     <div class="buttons wow fadeInUp">
@@ -117,7 +120,7 @@
                                 <button class="">Log out</button>
                             </a>
                         {% else %}
-                            <iframe src="{% url 'login' %}"
+                            <iframe id="iframe" src="{% url 'login' %}"
                                     style="border: none;border-radius: 10px; height: 430px; width: 300px;"
                                     title="Login form"></iframe>
                         {% endif %}

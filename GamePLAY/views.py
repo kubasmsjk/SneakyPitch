@@ -31,7 +31,7 @@ def mainView(request):
         send_mail(subject,
                   message,
                   email,
-                  ['adres_koncowy'])
+                  ['pinon23161@dakcans.com'])
     return render(request, 'main.html', dane_items)
 
 
