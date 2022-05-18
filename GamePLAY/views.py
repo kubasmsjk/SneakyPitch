@@ -11,16 +11,31 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 import operator
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
 def mainView(request):
-    static_items=StaticItems.objects.all()
+    static_items = StaticItems.objects.all()
     dane_items = {'static_items': static_items}
+
+    if request.method == 'POST':
+        email = request.POST['email']
+
+        subject = request.POST['subject']
+
+        message = request.POST['message']
+
+
+        send_mail(subject,
+                  message,
+                  email,
+                  ['adres_koncowy'])
     return render(request, 'main.html', dane_items)
 
-@login_required(login_url='login')
 
+@login_required(login_url='login')
 def tablesView(request):
     team_objects = Team.objects.all().order_by('-points')
     context = {
@@ -49,6 +64,7 @@ def shootersRankView(request):
     }
 
     return render(request, 'shootersRank.html', context)
+
 
 def registerView(request):
     if request.method == 'GET':

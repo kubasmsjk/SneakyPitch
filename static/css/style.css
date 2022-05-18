@@ -435,7 +435,6 @@ a.btn-customized-3 i {
 .section-2-box { padding-top: 30px; text-align: left; }
 
 .section-2-box h3 { margin-top: 0; }
-
 /* contact form */
 .section-2-form { padding-top: 20px; text-align: left; }
 
@@ -486,10 +485,6 @@ a.btn-customized-3 i {
 
 .section-2-social { padding-top: 20px; }
 
-.section-2-social a {
-	display: inline-block; width: 46px; height: 46px; margin: 0 10px 10px 0;
-	background: #fff; border: 0; border-radius: 50%; color: #555; text-align: center; line-height: 46px;
-}
 .section-2-social a:hover,
 .section-2-social a:focus { background: #ccc; background: rgba(255, 255, 255, 0.5); border: 0; color: #555; }
 

@@ -24,6 +24,14 @@ SECRET_KEY = 'django-insecure-)3q%gno%qk^ar__%whm%9w(7-y8#)oo!fhea&pzeiuhw#w79++
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@sandbox7eb52872a4594bbfa3c8c9d552339616.mailgun.org'
+EMAIL_HOST_PASSWORD = '33ba054e6ddcd950dfc75587011635c2-5e7fba0f-2e6f5554'
+
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -41,6 +49,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,7 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_referrer_policy.middleware.ReferrerPolicyMiddleware',
 ]
+REFERRER_POLICY='strict-origin-when-cross-origin'
 
 ROOT_URLCONF = 'SneakyPitch.urls'
 
