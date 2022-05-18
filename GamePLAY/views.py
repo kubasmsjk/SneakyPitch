@@ -13,6 +13,10 @@ def mainView(request):
     static_items = StaticItems.objects.all()
     dane_items = {'static_items': static_items}
 
+    return render(request, 'main.html', dane_items)
+
+
+def contactView(request):
     if request.method == 'POST':
         email = request.POST['email']
 
@@ -24,7 +28,6 @@ def mainView(request):
                   message,
                   email,
                   ['kwachu2234@gmail.com'])
-    return render(request, 'main.html', dane_items)
 
 
 def tablesView(request):

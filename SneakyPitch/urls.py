@@ -32,7 +32,8 @@ urlpatterns = [
     path('shootersRank/', shootersRankView, name='shootersRank'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', registerView, name='register'),
-    path('login/', login_request, name='login'),
+    path('', login_request, name='login'),
+    path('', contactView, name='contactView'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
