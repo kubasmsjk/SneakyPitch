@@ -1,0 +1,17 @@
+<form action="{% url 'login' %}" class="form-login" method="post">
+    {% csrf_token %}
+    <div class="form-floating">
+        <label> <input type="text" class="input-login" id="username" name="username" placeholder="Username"></label>
+    </div>
+    <div class="form-floating">
+        <label> <input type="text" class="input-login" id="password" name="password" placeholder="Password"></label>
+    </div>
+    <button id="loginButton" class="btn btn-customized" type="submit">Sign in</button>
+    <div class="col-12 text-center">
+        <p class="mb-0 mt-3">
+            <small class="text-dark mr-2 ">Don't have an account ?</small>
+            <a class="text-dark font-weight-normal " id="loginBtn">Sign
+                Up</a>
+        </p>
+    </div>
+</form>

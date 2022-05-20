@@ -10,7 +10,8 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/media-queries.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% endblock head %}
@@ -22,6 +23,7 @@
 
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" type="text/css" href="{% static 'ico/favicon.png' %}">
+
 </head>
 
 <body>
@@ -41,7 +43,7 @@
         <div class="logo">
             <h3><a href="/"></a></h3>
         </div>
-
+        {% load custom_tags %}
         <ul class="list-unstyled menu-elements">
             <li class="active">
                 <a href="{% url 'main' %}"><i class="fas fa-home"></i> Home</a>
@@ -54,6 +56,9 @@
             </li>
             <li>
                 <a href="{% url 'teams' %}"><i class="fa fa-users"></i>Teams</a>
+            </li>
+            <li>
+                <a href="{% anchor 'main' 'section-2' %}"><i class="fa fa-users"></i>Contact us</a>
             </li>
             <li>
                 <a href="{% url 'shootersRank' %}"><i class="fa fa-ranking-star"></i>Best shooters</a>
@@ -107,25 +112,30 @@
                     <h1 class="wow fadeIn">SneakyPitch </h1>
                     <div class="description wow fadeInLeft">
                         <p>
-                            Just do it! Create your team.
+                            Just do it! Create your league.
                         </p>
                     </div>
-                    <div class="buttons wow fadeInUp">
-                        <a href="/accounts/login">
-                            <button class="">Log in</button>
-                        </a>
-                        <a href="/accounts/logout">
-                            <button class="">Log out</button>
-                        </a>
-                        <a href="/register">
-                            <button class="">Register</button>
-                        </a>
-                    </div>
+                    {% if user.is_authenticated %}
+                        {% include "authentication/logout.html" %}
+                    {% else %}
+                        <div class="one">{% include "authentication/login.html" %}</div>
+                        <div class="two">{% include "register.html" %}</div>
+                    {% endif %}
+                    {% if messages %}
+                        {% for message in messages %}
+
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
         </div>
-
             <!-- Section 1 -->
             <div class="section-1-container section-container" id="section-1">
                 <div class="container">
@@ -181,6 +191,49 @@
                     </div>
                 </div>
             </div>
+            <!-- Section 2 -->
+            {% for o in static_items %}
+                <div class="section-2-container section-container section-container-image-bg" id="section-2"
+                     data-value="{{ o.contact_us_background_image.url }}">
+            {% endfor %}
+        <div class="container">
+            <div class="row">
+                <div class="col section-2 section-description wow fadeIn">
+                    <h2>Contact Us</h2>
+                    <div class="divider-1 wow fadeInUp"><span></span></div>
+                    <p>Send us an email using the form below or follow us on our social media channels.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 section-2-box wow fadeInUp">
+                    <h3>By eMail</h3>
+                    <div class="section-2-form">
+                        <form role="form" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="sr-only" for="contact-email">Email</label>
+                                <input type="text" name="email" placeholder="Email..."
+                                       class="contact-email form-control" id="contact-email">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="contact-subject">Subject</label>
+                                <input type="text" name="subject" placeholder="Subject..."
+                                       class="contact-subject form-control" id="contact-subject">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="contact-message">Message</label>
+                                <textarea name="message" placeholder="Message..." class="contact-message form-control"
+                                          id="contact-message"></textarea>
+                            </div>
+                            <button type="submit" id="contact-button" class="btn btn-primary btn-customized"><i
+                                    class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         {% endblock sidebar %}
         <!-- Footer -->
         <footer class="footer-container">
@@ -222,7 +275,7 @@
     <script src="{% static 'js/jquery.backstretch.min.js' %}"></script>
     <script src="{% static 'js/imagescript.js' %}"></script>
     <script src="{% static 'js/wow.min.js' %}"></script>
-
+    <script src="{% static 'js/login.js' %}"></script>
 {% endblock js %}
 
 

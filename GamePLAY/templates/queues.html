@@ -1,24 +1,23 @@
-<!doctype html>
 {% extends 'main.html' %}
 {% block sidebar %}
     {% load  static %}
     <html lang="en">
     <head>
-    {% block head %}
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+        {% block head %}
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
-        <!-- Style -->
-        <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
-        <title>{% block title %}Queues{% endblock %}</title>
-    {% endblock head %}
+            <!-- Style -->
+            <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+            <title>{% block title %}Queues{% endblock %}</title>
+        {% endblock head %}
     </head>
     <body>
 
@@ -30,24 +29,134 @@
 
 
             <div class="table-responsive">
-
-                <table class="table table-striped custom-table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Team</th>
-                        <th scope="col">Points</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr scope="row">
-                        {% for o in team_objects %}
-                            <td>{{ o.team_name }}</td>
-                            <td>{{ o.points }}</td>
+                <P><b>Number of queue: 1</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 1 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-
-                </table>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                <P><b>Number of queue: 2</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 2 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                <P><b>Number of queue: 3</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 3 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                <P><b>Number of queue: 4</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 4 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                <P><b>Number of queue: 5</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 5 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                <P><b>Number of queue: 6</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 6 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                <P><b>Number of queue: 7</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 7 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+                <P><b>Number of queue: 8</b></P>
+                {% for o in queue_objects %}
+                    {% if o.queue_number == 8 %}
+                        <table class="table table-striped custom-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ o.home_team }}</td>
+                                <td>{{ o.match_score }}</td>
+                                <td>{{ o.visiting_team }}</td>
+                                <td>{{ o.match_date }}</td>
+                                <td>{{ o.queue_number }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
 

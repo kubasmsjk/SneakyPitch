@@ -1,26 +1,26 @@
 <!doctype html>
 {% extends 'main.html' %}
-    {% load  static %}
-    <html lang="en">
-    <head>
-        {% block head %}
-            <!-- Required meta tags -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+{% load  static %}
+<html lang="en">
+<head>
+    {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-            <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
-            <!-- Style -->
-            <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
-            <title>{% block title %}Teams{% endblock %}</title>
-        {% endblock head %}
-    </head>
-    <body>
-    {% block sidebar %}
+        <!-- Style -->
+        <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+        <title>{% block title %}Teams{% endblock %}</title>
+    {% endblock head %}
+</head>
+<body>
+{% block sidebar %}
     <div class="content">
 
         <div class="container">
@@ -42,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr scope="row">
+                    <tr>
                         {% for o in team_objects %}
                             <td>{{ o.team_name }}</td>
                             <td>{{ o.stadium_name }}</td>
@@ -50,7 +50,7 @@
                             <td>{{ o.creation_date }}</td>
                             <td>{{ o.league_name }}</td>
                             </tr>
-                            <tr >
+                            <tr>
                                 {% for i in o.player_set.all %}
                                     <tr class="details-list">
 
@@ -61,10 +61,7 @@
                                     <td>{{ i.country }}</td>
                                     <td>{{ i.team }}</td>
                                 {% endfor %}
-
                                 </tr>
-
-                            </tr>
                         {% endfor %}
                     </tbody>
 
@@ -74,8 +71,8 @@
 
     </div>
 {% endblock sidebar %}
-    {% block js %}
-        <script src="{% static 'js/dropdownmenu.js' %}"></script>
-    {% endblock js %}
+{% block js %}
+    <script src="{% static 'js/dropdownmenu.js' %}"></script>
+{% endblock js %}
 </body>
 </html>

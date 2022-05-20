@@ -4,21 +4,21 @@
     {% load  static %}
     <html lang="en">
     <head>
-    {% block head %}
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+        {% block head %}
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
-        <!-- Style -->
-        <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
-        <title>{% block title %}Tables{% endblock %}</title>
-    {% endblock head %}
+            <!-- Style -->
+            <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+            <title>{% block title %}Tables{% endblock %}</title>
+        {% endblock head %}
     </head>
     <body>
 
@@ -39,7 +39,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr scope="row">
+                    <tr>
                         {% for o in team_objects %}
                             <td>{{ o.team_name }}</td>
                             <td>{{ o.points }}</td>

@@ -24,20 +24,28 @@ SECRET_KEY = 'django-insecure-)3q%gno%qk^ar__%whm%9w(7-y8#)oo!fhea&pzeiuhw#w79++
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@sandbox7eb52872a4594bbfa3c8c9d552339616.mailgun.org'
+EMAIL_HOST_PASSWORD = '33ba054e6ddcd950dfc75587011635c2-5e7fba0f-2e6f5554'
+
 ALLOWED_HOSTS = []
 
 # Application definition
 
 INSTALLED_APPS = [
     'GamePLAY.apps.GameplayConfig',
+    'accounts.apps.AccountsConfig',
     'crispy_forms',
-    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +56,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_referrer_policy.middleware.ReferrerPolicyMiddleware',
 ]
+REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
 ROOT_URLCONF = 'SneakyPitch.urls'
 
@@ -69,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'SneakyPitch.wsgi.application'
+#WSGI_APPLICATION = 'SneakyPitch.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -119,8 +129,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-MEDIA_URL="/media/"
-MEDIA_ROOT="media"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = "media"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -129,3 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'main'
 
 LOGOUT_REDIRECT_URL = 'main'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+SECURE_REFERRER_POLICY = 'none'

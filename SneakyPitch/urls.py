@@ -16,21 +16,17 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.template.backends import django
 from django.urls import path, include
 from GamePLAY.views import *
 
-
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', mainView, name='main'),
-    path('tables/', tablesView, name='tables'),
-    path('queues/', queuesView, name='queues'),
-    path('teams/', teamsView, name='teams'),
-    path('shootersRank/', shootersRankView, name='shootersRank'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('register/', registerView, name='register'),
+                  path('admin/', admin.site.urls),
+                  path('', main_view, name='main'),
+                  path('tables/', tables_view, name='tables'),
+                  path('queues/', queues_view, name='queues'),
+                  path('teams/', teams_view, name='teams'),
+                  path('shootersRank/', shooters_rank_view, name='shootersRank'),
+                  path('accounts/', include('django.contrib.auth.urls')),
+                  path('accounts/', include('accounts.urls')),
 
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
