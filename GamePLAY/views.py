@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from .models import *
@@ -12,11 +11,6 @@ from django.core.mail import send_mail
 def mainView(request):
     static_items = StaticItems.objects.all()
     dane_items = {'static_items': static_items}
-
-    return render(request, 'main.html', dane_items)
-
-
-def contactView(request):
     if request.method == 'POST':
         email = request.POST['email']
 
@@ -28,6 +22,7 @@ def contactView(request):
                   message,
                   email,
                   ['kwachu2234@gmail.com'])
+    return render(request, 'main.html', dane_items)
 
 
 def tablesView(request):

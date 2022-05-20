@@ -616,7 +616,12 @@ button.button-logout {
 #password{
     -webkit-text-security: disc;
 }
-
+#password1 {
+    -webkit-text-security: disc;
+}
+#password2{
+    -webkit-text-security: disc;
+}
 /**** Register Form  ****/
 .form-register {
     background-color: #ffffff;
@@ -644,4 +649,10 @@ button.button-logout {
 .input-register::placeholder {
     color: #0b2e13;
     font-weight: 300;
+}
+.one{
+    display: block;
+}
+.two{
+    display: none;
 }

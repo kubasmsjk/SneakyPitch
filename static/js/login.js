@@ -1,18 +1,15 @@
 jQuery(document).ready(function () {
     const zalogowany = false;
     if (zalogowany) {
-        $(".one").style.display = "none";
-        $(".two").style.display = "block";
-        console.log("witam33")
+        $(".one").css("display", "none")
+        $(".two").css("display", "block")
     }
     $(".loginBtn").click(function () {
-        $(".one").style.display = "none";
-        $(".two").style.display = "block";
-        console.log("witam")
+        $(".one").css("display", "none")
+        $(".two").css("display", "block")
     });
     $(".loginBtnn").click(function () {
-        $(".one").style.display = "block";
-        $(".two").style.display = "none";
-        console.log("wita2m")
+        $(".one").css("display", "block")
+        $(".two").css("display", "none")
     });
 });
