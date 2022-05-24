@@ -50,3 +50,6 @@ def register_user(request):
             return render(request, 'register.html', context)
 
     return render(request, 'register.html', {})
+
+def team_create(request):
+    return render(request, 'team-create.html.', {})

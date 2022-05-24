@@ -104,14 +104,14 @@
             <!-- Top content -->
             {% for o in static_items %}
                 <div class="top-content section-container" id="top-content"
-                     data-value="{{ o.main_background_image.url }}">
+                     data-value="{{ o.main_background_image.url|safe }}">
             {% endfor %}
         <div class="container">
             <div class="row">
                 <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <h1 class="wow fadeIn">SneakyPitch </h1>
                     <div class="description wow fadeInLeft">
-                        <p>
+                        <p id="replace-me">
                             Just do it! Create your league.
                         </p>
                     </div>
