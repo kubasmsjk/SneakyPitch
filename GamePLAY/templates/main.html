@@ -108,15 +108,15 @@
             {% endfor %}
         <div class="container">
             <div class="row">
-                <div  class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <h1 class="wow fadeIn">SneakyPitch </h1>
                     <div class="description wow fadeInLeft">
                         <p>
                             Just do it! Create your league.
                         </p>
                     </div>
-                    <div class="one" >{% include 'login.html' %}</div>
-                    <div class="two" >{% include 'register.html' %}</div>
+                    <div class="one">{% include 'login.html' %}</div>
+                    <div class="two">{% include 'register.html' %}</div>
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col section-1 section-description wow fadeIn">
-                            <h2>What We Do</h2>
+                            <h2>Check your favourite Club on the Map !</h2>
                             <div class="divider-1 wow fadeInUp"><span></span></div>
                         </div>
                     </div>
@@ -134,37 +134,33 @@
                         <div class="col-md-4 section-1-box wow fadeInUp">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fas fa-magic"></i>
-                                    </div>
+
                                 </div>
                                 <div class="col-md-8">
-                                    <h3>Branding</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et.</p>
+                                    <form  method="POST">
+                                        {% csrf_token %}
+                                        <p>
+                                        <div class="form-group">
+                                            {{ form }}
+                                        </div>
+                                        <button type="submit"  class="btn btn-primary btn-customized"></i> Find
+                                        </button>
+                                        </p>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 section-1-box wow fadeInDown">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fas fa-cog"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h3>Web design</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et.</p>
-                                </div>
+
+
+                                {{ m|safe }}
+
                             </div>
                         </div>
                         <div class="col-md-4 section-1-box wow fadeInUp">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fab fa-twitter"></i>
-                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <h3>Social media</h3>
@@ -193,7 +189,7 @@
                 <div class="col-md-5 section-2-box wow fadeInUp">
                     <h3>By eMail</h3>
                     <div class="section-2-form">
-                        <form  role="form" method="post">
+                        <form role="form" method="post">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="sr-only" for="contact-email">Email</label>
