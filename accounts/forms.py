@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Search
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -43,5 +44,16 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
 
         fields = [
+<<<<<<< HEAD:GamePLAY/forms.py
+            'username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'check',
+        ]
+
+class SearchForm(forms.ModelForm):
+    class Meta:
+        model = Search
+        fields = [
+            'address',
+=======
             'username', 'email', 'first_name', 'last_name', 'password1', 'password2',
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1:accounts/forms.py
         ]

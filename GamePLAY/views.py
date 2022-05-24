@@ -1,13 +1,54 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+from django.shortcuts import render, redirect
+from .forms import CustomUserCreationForm
+from .forms import SearchForm
+from .models import *
+from .models import Search
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.mail import send_mail
+import folium
+import geocoder
+=======
 from django.shortcuts import render
 from .models import *
 from django.core.mail import send_mail
 from django.contrib import messages
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
+=======
+from django.shortcuts import render
+from .models import *
+from django.core.mail import send_mail
+from django.contrib import messages
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
 
 
 # Create your views here.
 def main_view(request):
     static_items = StaticItems.objects.all()
-    dane_items = {'static_items': static_items}
+    #map
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return  redirect('/')
+    else:
+        form = SearchForm()
+    address = Search.objects.all().last()
+    location = geocoder.osm(address)
+    lat = location.lat
+    lng = location.lng
+    country = location.country
+    m = folium.Map(location=[40,-4], zoom_start=5)
+    folium.Marker([lat, lng], tooltip ='Click', popup=country).add_to(m)
+    m = m._repr_html_()
+    dane_items = {'static_items': static_items,
+                  'm': m,
+                  'form': form,
+                  }
+    #mail
     if request.method == 'POST':
         email = request.POST['email']
         subject = request.POST['subject']
@@ -16,6 +57,13 @@ def main_view(request):
             messages.success(request, "Fields cannot be empty")
         else:
             send_mail(subject, message, email, ['jakm5000@wp.pl'])
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
+=======
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
     return render(request, 'main.html', dane_items)
 
 

@@ -153,3 +153,9 @@ class StaticItems(models.Model):
         verbose_name = "StaticItem"
         verbose_name_plural = "StaticItems"
 
+class Search(models.Model):
+    address = models.CharField(max_length=100, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.address

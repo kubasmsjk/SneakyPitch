@@ -115,6 +115,13 @@
                             Just do it! Create your league.
                         </p>
                     </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <div class="one">{% include 'login.html' %}</div>
+                    <div class="two">{% include 'register.html' %}</div>
+=======
+=======
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
                     {% if user.is_authenticated %}
                         {% include "authentication/logout.html" %}
                     {% else %}
@@ -132,6 +139,10 @@
                             </div>
                         {% endfor %}
                     {% endif %}
+<<<<<<< HEAD
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
+=======
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
                 </div>
             </div>
         </div>
@@ -141,7 +152,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col section-1 section-description wow fadeIn">
-                            <h2>What We Do</h2>
+                            <h2>Check your favourite Club on the Map !</h2>
                             <div class="divider-1 wow fadeInUp"><span></span></div>
                         </div>
                     </div>
@@ -149,37 +160,33 @@
                         <div class="col-md-4 section-1-box wow fadeInUp">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fas fa-magic"></i>
-                                    </div>
+
                                 </div>
                                 <div class="col-md-8">
-                                    <h3>Branding</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et.</p>
+                                    <form  method="POST">
+                                        {% csrf_token %}
+                                        <p>
+                                        <div class="form-group">
+                                            {{ form }}
+                                        </div>
+                                        <button type="submit"  class="btn btn-primary btn-customized"></i> Find
+                                        </button>
+                                        </p>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 section-1-box wow fadeInDown">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fas fa-cog"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h3>Web design</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et.</p>
-                                </div>
+
+
+                                {{ m|safe }}
+
                             </div>
                         </div>
                         <div class="col-md-4 section-1-box wow fadeInUp">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fab fa-twitter"></i>
-                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <h3>Social media</h3>
