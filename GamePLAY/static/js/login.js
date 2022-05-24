@@ -4,11 +4,11 @@ jQuery(document).ready(function () {
         $(".one").css("display", "none")
         $(".two").css("display", "block")
     }
-    $(".loginBtn").click(function () {
+    $("#loginBtn").click(function () {
         $(".one").css("display", "none")
         $(".two").css("display", "block")
     });
-    $(".loginBtnn").click(function () {
+    $("#registerBtn").click(function () {
         $(".one").css("display", "block")
         $(".two").css("display", "none")
     });

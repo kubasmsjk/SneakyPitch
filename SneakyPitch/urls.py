@@ -23,14 +23,13 @@ from GamePLAY.views import *
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('', mainView, name='main'),
-                  path('tables/', tablesView, name='tables'),
-                  path('queues/', queuesView, name='queues'),
-                  path('teams/', teamsView, name='teams'),
-                  path('shootersRank/', shootersRankView, name='shootersRank'),
+                  path('', main_view, name='main'),
+                  path('tables/', tables_view, name='tables'),
+                  path('queues/', queues_view, name='queues'),
+                  path('teams/', teams_view, name='teams'),
+                  path('shootersRank/', shooters_rank_view, name='shootersRank'),
                   path('accounts/', include('django.contrib.auth.urls')),
-                  path('register/', registerView, name='register'),
-                  path('login/', login_request, name='login'),
+                  path('accounts/', include('accounts.urls')),
 
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

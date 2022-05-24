@@ -43,7 +43,7 @@
         <div class="logo">
             <h3><a href="/"></a></h3>
         </div>
-
+        {% load custom_tags %}
         <ul class="list-unstyled menu-elements">
             <li class="active">
                 <a href="{% url 'main' %}"><i class="fas fa-home"></i> Home</a>
@@ -58,7 +58,7 @@
                 <a href="{% url 'teams' %}"><i class="fa fa-users"></i>Teams</a>
             </li>
             <li>
-                <a class="scroll-link" href="#section-2"><i class="fa fa-users"></i>Contact us</a>
+                <a href="{% anchor 'main' 'section-2' %}"><i class="fa fa-users"></i>Contact us</a>
             </li>
             <li>
                 <a href="{% url 'shootersRank' %}"><i class="fa fa-ranking-star"></i>Best shooters</a>
@@ -115,8 +115,28 @@
                             Just do it! Create your league.
                         </p>
                     </div>
+<<<<<<< HEAD
                     <div class="one">{% include 'login.html' %}</div>
                     <div class="two">{% include 'register.html' %}</div>
+=======
+                    {% if user.is_authenticated %}
+                        {% include "authentication/logout.html" %}
+                    {% else %}
+                        <div class="one">{% include "authentication/login.html" %}</div>
+                        <div class="two">{% include "register.html" %}</div>
+                    {% endif %}
+                    {% if messages %}
+                        {% for message in messages %}
+
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+>>>>>>> c6bc06a117a85235b167be8f9a42765bfd07e4f1
                 </div>
             </div>
         </div>
@@ -206,7 +226,7 @@
                                 <textarea name="message" placeholder="Message..." class="contact-message form-control"
                                           id="contact-message"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-customized"><i
+                            <button type="submit" id="contact-button" class="btn btn-primary btn-customized"><i
                                     class="fas fa-paper-plane"></i> Send Message
                             </button>
                         </form>

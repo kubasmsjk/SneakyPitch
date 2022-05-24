@@ -31,13 +31,13 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'postmaster@sandbox7eb52872a4594bbfa3c8c9d552339616.mailgun.org'
 EMAIL_HOST_PASSWORD = '33ba054e6ddcd950dfc75587011635c2-5e7fba0f-2e6f5554'
 
-
 ALLOWED_HOSTS = []
 
 # Application definition
 
 INSTALLED_APPS = [
     'GamePLAY.apps.GameplayConfig',
+    'accounts.apps.AccountsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_referrer_policy.middleware.ReferrerPolicyMiddleware',
 ]
-REFERRER_POLICY='strict-origin-when-cross-origin'
+REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
 ROOT_URLCONF = 'SneakyPitch.urls'
 

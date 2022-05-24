@@ -632,7 +632,7 @@ button.button-logout {
     border-radius: 25px;
     opacity: 0.85;
     height: auto;
-    width: 50%;
+    width: auto;
 }
 .form-floating input[type="text"] {
     background: none;
