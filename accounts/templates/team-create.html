@@ -1,70 +1,51 @@
 {% extends 'main.html' %}
-{% if user.is_authenticated %}
-    {% block sidebar %}
-        {% load  static %}
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            {% block head %}
-                <meta charset="UTF-8">
-                <title>Title</title>
+{% block sidebar %}
+    {% load  static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <title>Title</title>
+            <link rel="stylesheet" href="{% static 'css/styleee.css' %}">
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        {% endblock head %}
+    </head>
+    <body>
+    <div class="heading-div"><h1 class="heading-h1">TEAM CREATION</h1></div>
+    <div class="center">
+        {% if submitted %}
+            <p>Dodales tak o</p>
+        {% else %}
 
-                <style>
-
-                    body {
-
-                        background: linear-gradient(
-                                rgba(0, 0, 0, 0.4),
-                                rgba(0, 0, 0, 0.4)
-                        ),
-                        url('../static/essa.jpg') no-repeat center top;
-                        background-size: 100%;
-                        text-align: center;
-                    }
-
-                    .center {
-                        position: relative;
-                        z-index: 1;
-                        width: 40%;
-                        height: 40%;
-                        border: 2px solid #ffffff;
-                        border-radius: 2px;
-                        top: 20%;
-                        left: 20%;
-                        margin-top: 5%;
-                        padding: 10% 10% 10% 10%;
-                        background-image: url('../static/anotak.jpg');
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                        opacity: 0.85;
-                    }
+            <form action="{% url 'team_create' %}" method="POST">
+                {% csrf_token %}
 
 
+                {% for field in form %}
+                    <div class="form-group">
+                        <label class="formGroupExampleInput" for="{{ field.auto_id }}">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
 
-                </style>
-                <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
-                <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-            {% endblock head %}
-        </head>
-        <body>
-        <div class="hehe"><h1>TEAM CREATION</h1></div>
-        <div class="center">
 
-            <form>
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Example label</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-                </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Another label</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-                </div>
+                <p class="Title-players">PLAYERS</p>
+                <p class="formGroupExampleInput1">Player 1</p>
+                {% for field in form_two %}
+                    <div class="form-group1">
+
+                        {{ field }}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" id="create-button" class="btn btn-primary btn-customized ">Create
+                </button>
             </form>
-        </div>
-        {% block js %}
+        {% endif %}
+    </div>
+    {% block js %}
     {% endblock js %}
-    {% endblock sidebar %}
+{% endblock sidebar %}
 </body>
 </html>
-{% else %}<P> U are not login</P>
-{% endif %}
