@@ -24,8 +24,11 @@ def main_view(request):
     lat = location.lat
     lng = location.lng
     country = location.country
-    m = folium.Map(location=[40,-4], zoom_start=5)
-    folium.Marker([lat, lng], tooltip ='Click', popup=country).add_to(m)
+    if lat == None or lng == None:
+        address.delete()
+        return redirect('/', messages.success(request, "This Club doesn't exist, try again"))
+    m = folium.Map(location=[lat,lng], zoom_start=4.5)
+    folium.Marker([lat, lng], tooltip ='Click', popup=country, icon=folium.Icon(color='#f35b3f', icon='futbol-o', prefix='fa')).add_to(m)
     m = m._repr_html_()
     dane_items = {'static_items': static_items,
                   'm': m,
