@@ -1,9 +1,11 @@
 from django import forms
-from django.forms import  ModelForm
+from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from GamePLAY.models import *
-#rejestracja
+
+
+# rejestracja
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
         max_length=100,
@@ -47,18 +49,20 @@ class CustomUserCreationForm(UserCreationForm):
             'username', 'email', 'first_name', 'last_name', 'password1', 'password2'
         ]
 
-#tworzenie druzyny
+
+# tworzenie druzyny
 class DateInput(forms.DateInput):
     input_type = 'date'
+
 
 class CreateTeam(ModelForm):
     class Meta:
         model = Team
-        fields= ('team_name','stadium_name','coach_name','creation_date','league_name')
+        fields = ('team_name', 'stadium_name', 'coach_name', 'creation_date', 'league_name')
 
-        labels={
+        labels = {
             'team_name': 'Team name',
-            'stadium_name':'Stadium',
+            'stadium_name': 'Stadium',
             'coach_name': 'Coach',
             'creation_date': 'Date',
             'league_name': 'League',
@@ -66,13 +70,28 @@ class CreateTeam(ModelForm):
         }
 
         widgets = {
-            'team_name' : forms.TextInput(attrs={'class':'input-element','placeholder':'Team name'}),
-            'stadium_name':forms.TextInput(attrs={'class':'input-element','placeholder':'Stadium'}),
-            'coach_name':forms.TextInput(attrs={'class':'input-element','placeholder':'Coach'}),
-            'creation_date':DateInput(attrs={'class':'input-date-element'}),
+            'team_name': forms.TextInput(attrs={'class': 'input-element', 'placeholder': 'Team name'}),
+            'stadium_name': forms.TextInput(attrs={'class': 'input-element', 'placeholder': 'Stadium'}),
+            'coach_name': forms.TextInput(attrs={'class': 'input-element', 'placeholder': 'Coach'}),
+            'creation_date': DateInput(format='%d/%m/%Y', attrs={'class': 'input-date-element'})
         }
-#tworzenie graczy
+
+
+# tworzenie graczy
 class CreatePlayers(ModelForm):
     class Meta:
         model = Player
-        fields= ('first_name','last_name','date_of_birth','player_position','country','team')
+        fields = ('first_name', 'last_name', 'player_position', 'country','team')
+
+        widgets = {
+            'first_name': forms.TextInput(
+                attrs={'class': 'input-element1', 'placeholder': 'First name'}),
+            'last_name': forms.TextInput(
+                attrs={'class': 'input-element1', 'placeholder': 'Last name'}),
+        }
+
+# def clean(self, *args, **kwargs):
+#     data = super().clean(*args, **kwargs)
+#    if data['price'] < data['product'].price:
+#      raise ValidationError('The price of the sale is below the price of the product')
+#   return data

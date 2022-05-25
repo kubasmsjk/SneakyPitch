@@ -6,6 +6,7 @@ from django.dispatch import receiver
 import datetime
 
 
+
 class League(models.Model):
     league_name = models.CharField(max_length=50, default='')
 
@@ -58,9 +59,8 @@ class Player(models.Model):
     ]
     first_name = models.CharField(max_length=50, default='')
     last_name = models.CharField(max_length=50, default='')
-    date_of_birth = models.DateField(null=True)
     player_position = models.CharField(max_length=10, choices=PLAYER_POSITION, default='')
-    country = models.CharField(max_length=50, choices=pytz.country_names.items(), blank=True)
+    country = models.CharField(max_length=50, choices=pytz.country_names.items(), blank=True,default='')
     number_of_goals = models.PositiveIntegerField(default=0)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default='')
     link = "Edit"
@@ -154,8 +154,7 @@ class StaticItems(models.Model):
         verbose_name_plural = "StaticItems"
 
 class Search(models.Model):
-    address = models.CharField(max_length=100, null=True)
-    date = models.DateTimeField(auto_now_add=True)
+    address = models.CharField(max_length=50, blank=True, default='')
 
     def __str__(self):
         return self.address

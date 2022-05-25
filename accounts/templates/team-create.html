@@ -14,35 +14,18 @@
     <body>
     <div class="heading-div"><h1 class="heading-h1">TEAM CREATION</h1></div>
     <div class="center">
-        {% if submitted %}
-            <p>Dodales tak o</p>
-        {% else %}
+        <form action="{% url 'team-create' %}" method="POST">
+            {% csrf_token %}
 
-            <form action="{% url 'team_create' %}" method="POST">
-                {% csrf_token %}
-
-
-                {% for field in form %}
-                    <div class="form-group">
-                        <label class="formGroupExampleInput" for="{{ field.auto_id }}">{{ field.label }}</label>
-                        {{ field }}
-                    </div>
-                {% endfor %}
-
-
-                <p class="Title-players">PLAYERS</p>
-                <p class="formGroupExampleInput1">Player 1</p>
-                {% for field in form_two %}
-                    <div class="form-group1">
-
-                        {{ field }}
-                    </div>
-                {% endfor %}
-
-                <button type="submit" id="create-button" class="btn btn-primary btn-customized ">Create
-                </button>
-            </form>
-        {% endif %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label class="formGroupExampleInput" for="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" id="create-team-button" class="btn btn-primary btn-customized ">Create
+            </button>
+        </form>
     </div>
     {% block js %}
     {% endblock js %}

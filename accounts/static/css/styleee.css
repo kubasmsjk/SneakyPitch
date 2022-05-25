@@ -14,13 +14,13 @@ body {
 }
 
 .center {
-    position: relative;
+    position: absolute;
     z-index: 1;
     width: 60%;
     border: 2px solid #ffffff;
     border-radius: 2px;
     top: 20%;
-    left: 20%;
+    left: 15%;
     margin-top: 1%;
     padding: 1% 1% 1% 1%;
     background: linear-gradient(
@@ -37,7 +37,6 @@ body {
     text-align: center;
     display: inline-block;
     width: 19%;
-
 }
 
 .input-element {
@@ -49,7 +48,7 @@ body {
 
 .input-date-element {
 
-    width: 187px;
+    width: 190px;
     height: 33px;
     margin: 15px 15px 15px 15px;
     padding: 2px 2px 2px 2px;
@@ -57,8 +56,27 @@ body {
     border-color: #ffffff;
 }
 
+.input-element1 {
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+    border-color: #ffffff;
+}
+
+.input-date-element {
+    position: relative;
+    margin: 15px 15px 15px 15px;
+    padding: 2px 2px 2px 2px;
+    width: 140px;
+    right: 4%;
+    border-radius: 7px;
+    border-color: #ffffff;
+}
+
 #id_league_name {
-    width: 150px;
+    position: relative;
+    right: 25%;
+    width: 230px;
     height: 33px;
     margin: 15px 15px 15px 15px;
     padding: 2px 2px 2px 2px;
@@ -91,7 +109,64 @@ body {
 .form-group1 {
     text-align: center;
     display: inline-block;
-    width: 16%;
+    margin-left: -.7%;
+    margin-right: -.7%;
+}
+
+#id_form1-player_position,
+#id_form2-player_position,
+#id_form3-player_position,
+#id_form4-player_position,
+#id_form5-player_position,
+#id_form6-player_position,
+#id_form7-player_position,
+#id_form8-player_position,
+#id_form9-player_position,
+#id_form10-player_position,
+#id_form11-player_position {
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+    border-color: #ffffff;
+    width: 150px;
+    height: 33px;
+}
+
+#id_form1-country,
+#id_form2-country,
+#id_form3-country,
+#id_form4-country,
+#id_form5-country,
+#id_form6-country,
+#id_form7-country,
+#id_form8-country,
+#id_form9-country,
+#id_form10-country,
+#id_form11-country {
+    width: 130px;
+    height: 33px;
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+}
+
+#id_form1-team,
+#id_form2-team,
+#id_form3-team,
+#id_form4-team,
+#id_form5-team,
+#id_form6-team,
+#id_form7-team,
+#id_form8-team,
+#id_form9-team,
+#id_form10-team,
+#id_form11-team {
+    width: 130px;
+    height: 33px;
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+
 }
 
 .heading-div {
@@ -247,13 +322,17 @@ a:hover, a:focus {
 }
 
 
-#create-button {
-    position: relative;
-    margin-top: 10px;
+ #create-team-button {
+    position: absolute;
     left: 45%;
     box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
 }
+.add-players-button{
+    position: relative;
+left: 25%;
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
 
+}
 
 .open-menu.btn-customized,
 .open-menu.btn-customized:hover,
@@ -380,9 +459,10 @@ a.btn-customized-3 i, button.btn-customized {
 
 footer {
 
-    position: absolute;
-    bottom: auto;
+    position: fixed;
+    bottom: 0;
     width: 100%;
+    left: 0;
     text-align: center;
     color: #ffffff;
 }
