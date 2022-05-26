@@ -14,13 +14,13 @@ body {
 }
 
 .center {
-    position: absolute;
+    position: relative;
     z-index: 1;
     width: 60%;
     border: 2px solid #ffffff;
     border-radius: 2px;
     top: 20%;
-    left: 15%;
+    left: 20%;
     margin-top: 1%;
     padding: 1% 1% 1% 1%;
     background: linear-gradient(
@@ -30,9 +30,12 @@ body {
     url('../anotak.jpg') no-repeat center top;
 
     background-size: cover;
-    opacity: 0.85;
+    opacity: 0.9;
 }
+.player-form{
+    text-align: center;
 
+}
 .form-group {
     text-align: center;
     display: inline-block;
@@ -92,8 +95,13 @@ body {
 
 .formGroupExampleInput1 {
     text-align: left;
+    background: rgb(250, 250, 250);
+    width: 8.6%;
+    padding: 4px 4px 4px 4px;
+    background: rgba(250, 250, 250, 0.5);
+    border-radius: 7px;
     font-family: 'Member Kinglify', sans-serif;
-    font-size: 33px;
+    font-size: 26px;
     color: #000000;
     -webkit-text-stroke: 0.3px #ffffff;
 }
@@ -101,7 +109,7 @@ body {
 .Title-players {
     text-align: center;
     font-family: 'Throostle', sans-serif;
-    font-size: 46px;
+    font-size: 50px;
     color: #000000;
     -webkit-text-stroke: 0.3px #ffffff;
 }
@@ -166,7 +174,7 @@ body {
     margin: 5px 5px 5px 5px;
     padding: 2px 2px 2px 2px;
     border-radius: 7px;
-
+    display: none;
 }
 
 .heading-div {
@@ -182,6 +190,19 @@ body {
     -webkit-text-stroke: 3px #000000;
 
 }
+
+#create-team-button {
+    position: relative;
+    left: 45%;
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+}
+.add-players-button{
+    position: relative;
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+
+}
+
+
 
 
 a {
@@ -322,17 +343,6 @@ a:hover, a:focus {
 }
 
 
- #create-team-button {
-    position: absolute;
-    left: 45%;
-    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
-}
-.add-players-button{
-    position: relative;
-left: 25%;
-    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
-
-}
 
 .open-menu.btn-customized,
 .open-menu.btn-customized:hover,
@@ -457,12 +467,20 @@ a.btn-customized-3 i, button.btn-customized {
 
 /***** Footer *****/
 
-footer {
 
-    position: fixed;
+
+.footer-container {
+
+    position: absolute;
     bottom: 0;
     width: 100%;
     left: 0;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
-    color: #ffffff;
+    color: #888;
+    background-color: #ffffff;
+    margin-top: 2px;
+
+
+
 }

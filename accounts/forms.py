@@ -81,7 +81,7 @@ class CreateTeam(ModelForm):
 class CreatePlayers(ModelForm):
     class Meta:
         model = Player
-        fields = ('first_name', 'last_name', 'player_position', 'country','team')
+        fields = ('first_name', 'last_name', 'player_position', 'country')
 
         widgets = {
             'first_name': forms.TextInput(
