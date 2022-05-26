@@ -1,13 +1,40 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import SearchForm
 from .models import *
+from .models import Search
 from django.core.mail import send_mail
+import folium
+import geocoder
 from django.contrib import messages
 
 
 # Create your views here.
 def main_view(request):
     static_items = StaticItems.objects.all()
-    dane_items = {'static_items': static_items}
+    #map
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return  redirect('/')
+    else:
+        form = SearchForm()
+    address = Search.objects.all().last()
+    location = geocoder.osm(address)
+    lat = location.lat
+    lng = location.lng
+    country = location.country
+    if lat == None or lng == None:
+        address.delete()
+        return redirect('/', messages.success(request, "This Club doesn't exist, try again"))
+    m = folium.Map(location=[lat,lng], zoom_start=4.5)
+    folium.Marker([lat, lng], tooltip ='Click', popup=country, icon=folium.Icon(color='#f35b3f', icon='futbol-o', prefix='fa')).add_to(m)
+    m = m._repr_html_()
+    dane_items = {'static_items': static_items,
+                  'm': m,
+                  'form': form,
+                  }
+    #mail
     if request.method == 'POST':
         email = request.POST['email']
         subject = request.POST['subject']

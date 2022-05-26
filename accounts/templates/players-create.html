@@ -1,0 +1,107 @@
+{% extends 'main.html' %}
+{% block sidebar %}
+    {% load  static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <title>Title</title>
+            <link rel="stylesheet" href="{% static 'css/styleee.css' %}">
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        {% endblock head %}
+    </head>
+    <body>
+    <div class="heading-div"><h1 class="heading-h1">TEAM CREATION</h1></div>
+    <div class="center">
+        <form action="{% url 'players-add' %}" method="POST" class="player-form">
+            {% csrf_token %}
+            <p class="Title-players">PLAYERS</p>
+            <p class="formGroupExampleInput1">Player 1</p>
+            {% for field in form1 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 2</p>
+            {% for field in form2 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 3</p>
+            {% for field in form3 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 4</p>
+            {% for field in form4 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 5</p>
+            {% for field in form5 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 6</p>
+            {% for field in form6 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 7</p>
+            {% for field in form7 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 8</p>
+            {% for field in form8 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 9</p>
+            {% for field in form9 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <p class="formGroupExampleInput1">Player 10</p>
+            {% for field in form10 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <p class="formGroupExampleInput1">Player 11</p>
+            {% for field in form11 %}
+                <div class="form-group1">
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="add-players-button">
+                <button type="submit" class="btn btn-primary btn-customized ">
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>
+    {% block js %}
+        <script src="{% static 'js/footer-bottom.js' %}"></script>
+    {% endblock js %}
+{% endblock sidebar %}
+</body>
+</html>

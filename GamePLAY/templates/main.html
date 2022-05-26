@@ -104,21 +104,21 @@
             <!-- Top content -->
             {% for o in static_items %}
                 <div class="top-content section-container" id="top-content"
-                     data-value="{{ o.main_background_image.url }}">
+                     data-value="{{ o.main_background_image.url|safe }}">
             {% endfor %}
         <div class="container">
             <div class="row">
                 <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <h1 class="wow fadeIn">SneakyPitch </h1>
                     <div class="description wow fadeInLeft">
-                        <p>
+                        <p id="replace-me">
                             Just do it! Create your league.
                         </p>
                     </div>
                     {% if user.is_authenticated %}
-                        {% include "authentication/logout.html" %}
+                        {% include "registration/logout.html" %}
                     {% else %}
-                        <div class="one">{% include "authentication/login.html" %}</div>
+                        <div class="one">{% include "registration/login.html" %}</div>
                         <div class="two">{% include "register.html" %}</div>
                     {% endif %}
                     {% if messages %}
@@ -141,7 +141,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col section-1 section-description wow fadeIn">
-                            <h2>What We Do</h2>
+                            <h2>Check your favourite Club on the Map !</h2>
                             <div class="divider-1 wow fadeInUp"><span></span></div>
                         </div>
                     </div>
@@ -149,37 +149,33 @@
                         <div class="col-md-4 section-1-box wow fadeInUp">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fas fa-magic"></i>
-                                    </div>
+
                                 </div>
                                 <div class="col-md-8">
-                                    <h3>Branding</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et.</p>
+                                    <form  method="POST">
+                                        {% csrf_token %}
+                                        <p>
+                                        <div class="form-group">
+                                            {{ form }}
+                                        </div>
+                                        <button type="submit"  class="btn btn-primary btn-customized"></i> Find
+                                        </button>
+                                        </p>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 section-1-box wow fadeInDown">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fas fa-cog"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h3>Web design</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et.</p>
-                                </div>
+
+
+                                {{ m|safe }}
+
                             </div>
                         </div>
                         <div class="col-md-4 section-1-box wow fadeInUp">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="section-1-box-icon">
-                                        <i class="fab fa-twitter"></i>
-                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <h3>Social media</h3>

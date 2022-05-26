@@ -3,6 +3,8 @@ from .models import *
 
 
 # Register your models here.
+admin.site.register(Search)
+
 
 class PlayerInLIne(admin.StackedInline):
     model = Player
@@ -10,7 +12,7 @@ class PlayerInLIne(admin.StackedInline):
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'date_of_birth', 'player_position', 'country', 'team', 'number_of_goals',
+    list_display = ['first_name', 'last_name', 'player_position', 'country', 'team', 'number_of_goals',
                     'link']
     list_filter = ['team']
     list_display_links = ['link']
