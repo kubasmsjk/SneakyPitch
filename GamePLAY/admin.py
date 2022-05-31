@@ -40,7 +40,7 @@ class LeagueAdmin(admin.ModelAdmin):
 
 @admin.register(PlayerStatistic)
 class PlayerStatisticAdmin(admin.ModelAdmin):
-    list_display = ['player_name', 'team_name', 'home_team', 'away_team', 'number_of_goals', 'number_of_assists',
+    list_display = ['player', 'team_name', 'home_team', 'away_team', 'number_of_goals', 'number_of_assists',
                     'number_of_passes',
                     'number_of_fouls']
 

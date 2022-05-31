@@ -152,3 +152,21 @@ def players_add(request):
     return render(request, 'players-create.html',
                   {'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4, 'form5': form5, 'form6': form6,
                    'form7': form7, 'form8': form8, 'form9': form9, 'form10': form10, 'form11': form11})
+
+@login_required(login_url='main')
+def enter_results(request):
+    queue_objects = Match.objects.all().order_by('queue_number', 'match_date')
+    player_objects=Player.objects.all()
+    if request.method == "POST":
+        form1 = PlayersMatchStatistic(request.POST)
+        form2 = PlayersMatchStatistic(request.POST)
+        if form1.is_valid():
+            form1.save()
+
+        if form2.is_valid():
+            form2.save()
+            return HttpResponseRedirect('enter-results')
+    else:
+        form1 = PlayersMatchStatistic
+        form2 = PlayersMatchStatistic
+    return render(request, 'enter-the-results.html',{'form1': form1,'form2': form2,'queue_objects': queue_objects,'player_objects': player_objects})

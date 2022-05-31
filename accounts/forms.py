@@ -90,6 +90,15 @@ class CreatePlayers(ModelForm):
                 attrs={'class': 'input-element1', 'placeholder': 'Last name'}),
         }
 
+
+# statystyki w meczu
+class PlayersMatchStatistic(ModelForm):
+    class Meta:
+        model = PlayerStatistic
+        fields = ('player', 'number_of_goals', 'number_of_assists', 'number_of_passes', 'number_of_fouls')
+
+
+
 # def clean(self, *args, **kwargs):
 #     data = super().clean(*args, **kwargs)
 #    if data['price'] < data['product'].price:

@@ -73,15 +73,15 @@ class Player(models.Model):
         return str(self.first_name) + ' ' + str(self.last_name)
 
 
-@receiver(post_save, sender=Player)
-def create_player_statistic(instance, created, **kwargs):
-    if created:
-        PlayerStatistic.objects.create(player_name=instance.first_name, team_name=instance.team.team_name)
+#@receiver(post_save, sender=Player)
+#def create_player_statistic(instance, created, **kwargs):
+ #   if created:
+  #      PlayerStatistic.objects.create(player=instance.first_name, team_name=instance.team.team_name)
 
 
-@receiver(post_delete, sender=Player)
-def delete_player_statistic(instance, **kwargs):
-    PlayerStatistic.objects.filter(player_name=instance.first_name, team_name=instance.team.team_name).delete()
+#@receiver(post_delete, sender=Player)
+#def delete_player_statistic(instance, **kwargs):
+ #   PlayerStatistic.objects.filter(player=instance.first_name, team_name=instance.team.team_name).delete()
 
 
 class Match(models.Model):
@@ -107,7 +107,7 @@ class Match(models.Model):
 
 
 class PlayerStatistic(models.Model):
-    player_name = models.CharField(max_length=50, blank=True, default='')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE,default='')
     team_name = models.CharField(max_length=50, blank=True, default='')
     home_team = models.CharField(max_length=50, blank=True, default='')
     away_team = models.CharField(max_length=50, blank=True, default='')
@@ -121,10 +121,10 @@ class PlayerStatistic(models.Model):
         verbose_name_plural = "PlayerStatistics"
 
 
-@receiver(post_save, sender=Player)
-def make_PlayerStatistic(sender, instance, **kwargs):
-    PlayerStatistic.objects.filter(player_name=instance.first_name).update(player_name=instance.first_name,
-                                                                           number_of_goals=instance.number_of_goals)
+#@receiver(post_save, sender=Player)
+#def make_PlayerStatistic(sender, instance, **kwargs):
+   # PlayerStatistic.objects.filter(player=instance.first_name).update(player=instance.first_name,
+      #                                                                     number_of_goals=instance.number_of_goals)
 
 
 class TeamStatistic(models.Model):
