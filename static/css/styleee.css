@@ -1,0 +1,487 @@
+@import url('http://fonts.cdnfonts.com/css/imnova-st');
+@import url('http://fonts.cdnfonts.com/css/member-kinglify');
+@import url('http://fonts.cdnfonts.com/css/throostle');
+
+body {
+
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.4)
+    ),
+    url('../essa.jpg') no-repeat center top;
+    background-size: 122%;
+    text-align: center;
+}
+
+.center {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+    border: 2px solid #ffffff;
+    border-radius: 2px;
+    top: 20%;
+    left: 20%;
+    margin-top: 1%;
+    padding: 1% 1% 1% 1%;
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.3)
+    ),
+    url('../anotak.jpg') no-repeat center top;
+
+    background-size: cover;
+    opacity: 0.9;
+}
+
+.player-form{
+    text-align: center;
+
+}
+.form-group {
+    text-align: center;
+    display: inline-block;
+    width: 19%;
+}
+
+.input-element {
+    margin: 15px 15px 15px 15px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+    border-color: #ffffff;
+}
+
+.input-date-element {
+
+    width: 190px;
+    height: 33px;
+    margin: 15px 15px 15px 15px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+    border-color: #ffffff;
+}
+
+.input-element1 {
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+    border-color: #ffffff;
+}
+
+.input-date-element {
+    position: relative;
+    margin: 15px 15px 15px 15px;
+    padding: 2px 2px 2px 2px;
+    width: 140px;
+    right: 4%;
+    border-radius: 7px;
+    border-color: #ffffff;
+}
+
+#id_league_name {
+    position: relative;
+    right: 25%;
+    width: 230px;
+    height: 33px;
+    margin: 15px 15px 15px 15px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+}
+
+.formGroupExampleInput {
+    font-family: 'Imnova St', sans-serif;
+    font-size: 34px;
+    color: #ffffff;
+    -webkit-text-stroke: 2px #721c24;
+}
+
+.formGroupExampleInput1 {
+    text-align: left;
+    background: rgb(250, 250, 250);
+    width: 8.6%;
+    padding: 4px 4px 4px 4px;
+    background: rgba(250, 250, 250, 0.5);
+    border-radius: 7px;
+    font-family: 'Member Kinglify', sans-serif;
+    font-size: 26px;
+    color: #000000;
+    -webkit-text-stroke: 0.3px #ffffff;
+}
+
+.Title-players {
+    text-align: center;
+    font-family: 'Throostle', sans-serif;
+    font-size: 50px;
+    color: #000000;
+    -webkit-text-stroke: 0.3px #ffffff;
+}
+
+.form-group1 {
+    text-align: center;
+    display: inline-block;
+    margin-left: -.7%;
+    margin-right: -.7%;
+}
+
+#id_form1-player_position,
+#id_form2-player_position,
+#id_form3-player_position,
+#id_form4-player_position,
+#id_form5-player_position,
+#id_form6-player_position,
+#id_form7-player_position,
+#id_form8-player_position,
+#id_form9-player_position,
+#id_form10-player_position,
+#id_form11-player_position {
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+    border-color: #ffffff;
+    width: 150px;
+    height: 33px;
+}
+
+#id_form1-country,
+#id_form2-country,
+#id_form3-country,
+#id_form4-country,
+#id_form5-country,
+#id_form6-country,
+#id_form7-country,
+#id_form8-country,
+#id_form9-country,
+#id_form10-country,
+#id_form11-country {
+    width: 130px;
+    height: 33px;
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+}
+
+#id_form1-team,
+#id_form2-team,
+#id_form3-team,
+#id_form4-team,
+#id_form5-team,
+#id_form6-team,
+#id_form7-team,
+#id_form8-team,
+#id_form9-team,
+#id_form10-team,
+#id_form11-team {
+    width: 130px;
+    height: 33px;
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 7px;
+    display: none;
+}
+
+.heading-div {
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+.heading-h1 {
+    font-family: "Jazz LET", fantasy;
+    font-size: 70px;
+    color: #ffffff;
+    -webkit-text-stroke: 3px #000000;
+
+}
+
+#create-team-button {
+    position: relative;
+    left: 45%;
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+}
+.add-players-button{
+    position: relative;
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+
+}
+
+
+
+
+a {
+    color: #f35b3f;
+    border-bottom: 1px dashed #f35b3f;
+    text-decoration: none;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+
+}
+
+a:hover, a:focus {
+    color: #f35b3f;
+    border: 0;
+    text-decoration: none !important;
+}
+
+
+/***** Sidebar *****/
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -255px;
+    z-index: 999;
+    background: #333;
+    color: #fff;
+    transition: all .3s;
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.5);
+    text-align: left;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.dismiss {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: all .3s;
+    background: #444;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.dismiss:hover, .dismiss:focus {
+    background: #555;
+    color: #fff;
+}
+
+.sidebar .logo {
+    padding: 40px 20px;
+    border-bottom: 1px solid #444;
+    transition: all .3s;
+}
+
+.sidebar .logo a {
+    display: inline-block;
+    width: 172px;
+    height: 34px;
+    background: url(../img/logo.png) left top no-repeat;
+    border: 0;
+    text-indent: -999999px;
+}
+
+.sidebar ul.menu-elements {
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+    transition: all .3s;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px 20px;
+    border: 0;
+    color: #fff;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a:focus,
+.sidebar ul li.active > a:hover,
+.sidebar ul li.active > a:focus {
+    outline: 0;
+    background: #555;
+    color: #fff;
+}
+
+.sidebar ul li a i {
+    margin-right: 5px;
+}
+
+.sidebar ul li.active > a, a[aria-expanded="true"] {
+    background: #444;
+    color: #fff;
+}
+
+.sidebar ul ul a {
+    background: #444;
+    padding-left: 30px;
+    font-size: 14px;
+}
+
+.sidebar ul ul li.active > a {
+    background: #555;
+}
+
+.sidebar a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.sidebar .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.sidebar .to-top {
+    padding: 20px;
+    text-align: center;
+}
+
+.open-menu {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    z-index: 997;
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+}
+
+
+
+.open-menu.btn-customized,
+.open-menu.btn-customized:hover,
+.open-menu.btn-customized:active,
+.open-menu.btn-customized:focus,
+.open-menu.btn-customized:active:focus,
+.open-menu.btn-customized.active:focus,
+.open-menu.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active,
+.open-menu.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus,
+.button.btn-customized,
+.button.btn-customized:hover,
+.button.btn-customized:active,
+.button.btn-customized:focus,
+.button.btn-customized:active:focus,
+.button.btn-customized.active:focus,
+.button.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active,
+.button.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+}
+
+
+/***** Buttons *****/
+
+
+a.btn-customized, button.btn-customized {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: .75rem 1.5rem;
+    background: #f35b3f;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    box-shadow: none;
+}
+
+a.btn-customized:hover,
+a.btn-customized:active,
+a.btn-customized:focus,
+a.btn-customized:active:focus,
+a.btn-customized.active:focus,
+a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active,
+a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus,
+button.btn-customized:hover,
+button.btn-customized:active,
+button.btn-customized:focus,
+button.btn-customized:active:focus,
+button.btn-customized.active:focus,
+button.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active,
+button.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
+    outline: 0;
+    background: #cd533d;
+    background: rgba(243, 91, 63, 0.7);
+    border: 0;
+    color: #fff;
+    box-shadow: none;
+}
+
+a.btn-customized-2 {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: .75rem 1.5rem;
+    background: #fff;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #555;
+    box-shadow: none;
+}
+
+a.btn-customized-2:hover,
+a.btn-customized-2:active,
+a.btn-customized-2:focus,
+a.btn-customized-2:active:focus,
+a.btn-customized-2.active:focus,
+a.btn-customized-2.btn.btn-primary:not(:disabled):not(.disabled):active,
+a.btn-customized-2.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
+    outline: 0;
+    background: #ccc;
+    background: rgba(255, 255, 255, 0.5);
+    border: 0;
+    color: #555;
+    box-shadow: none;
+}
+
+a.btn-customized-3 {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: .75rem 1.5rem;
+    background: #444;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    box-shadow: none;
+}
+
+a.btn-customized-3:hover,
+a.btn-customized-3:active,
+a.btn-customized-3:focus,
+a.btn-customized-3:active:focus,
+a.btn-customized-3.active:focus,
+a.btn-customized-3.btn.btn-primary:not(:disabled):not(.disabled):active,
+a.btn-customized-3.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
+    outline: 0;
+    background: #555;
+    border: 0;
+    color: #fff;
+    box-shadow: none;
+}
+
+a.btn-customized i,
+a.btn-customized-2 i,
+a.btn-customized-3 i, button.btn-customized {
+    margin-right: 5px;
+}
+
+
+/***** Footer *****/
+
+
+
+.footer-container {
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #888;
+    background-color: #ffffff;
+    margin-top: 2px;
+
+
+
+}
