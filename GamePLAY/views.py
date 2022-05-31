@@ -12,7 +12,7 @@ from django.contrib import messages
 def main_view(request):
     static_items = StaticItems.objects.all()
     #map
-    if request.method == 'POST':
+    if 'find' in request.POST and request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
             form.save()
@@ -35,7 +35,7 @@ def main_view(request):
                   'form': form,
                   }
     #mail
-    if request.method == 'POST':
+    if 'contact' in request.POST and request.method == 'POST':
         email = request.POST['email']
         subject = request.POST['subject']
         message = request.POST['message']
@@ -44,7 +44,6 @@ def main_view(request):
         else:
             send_mail(subject, message, email, ['jakm5000@wp.pl'])
     return render(request, 'main.html', dane_items)
-
 
 def tables_view(request):
     team_objects = Team.objects.all().order_by('-points')

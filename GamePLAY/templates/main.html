@@ -152,16 +152,18 @@
 
                                 </div>
                                 <div class="col-md-8">
-                                    <form  method="POST">
+                                    <div class="section-1-form">
+                                    <form method="POST">
                                         {% csrf_token %}
                                         <p>
                                         <div class="form-group">
                                             {{ form }}
                                         </div>
-                                        <button type="submit"  class="btn btn-primary btn-customized"></i> Find
+                                        <button type="submit" name="find"  class="btn btn-primary btn-customized"> Find
                                         </button>
                                         </p>
                                     </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -221,7 +223,7 @@
                                 <textarea name="message" placeholder="Message..." class="contact-message form-control"
                                           id="contact-message"></textarea>
                             </div>
-                            <button type="submit" id="contact-button" class="btn btn-primary btn-customized"><i
+                            <button type="submit" name="contact" class="btn btn-primary btn-customized"><i
                                     class="fas fa-paper-plane"></i> Send Message
                             </button>
                         </form>

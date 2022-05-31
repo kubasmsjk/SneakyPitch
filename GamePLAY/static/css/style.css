@@ -443,6 +443,37 @@ a.btn-customized-3 i {
     padding: 0 0 40px 0;
 }
 
+.section-1-form button.btn-customized {
+    padding: .75rem 1.5rem;
+    background: #f35b3f;
+    border: 0;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    box-shadow: none;
+}
+
+.section-1-form button.btn-customized:hover,
+.section-1-form button.btn-customized:active,
+.section-1-form button.btn-customized:focus,
+.section-1-form button.btn-customized:active:focus,
+.section-1-form button.btn-customized.active:focus,
+.section-1-form button.btn.btn-primary:not(:disabled):not(.disabled):active,
+.section-1-form button.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
+    outline: 0;
+    background: #cd533d;
+    background: rgba(243, 91, 63, 0.7);
+    border: 0;
+    color: #fff;
+    box-shadow: none;
+}
+.buttons-inline{
+    display: inline-block;
+}
+
+
 /***** Section 2 *****/
 
 .section-2-box {
