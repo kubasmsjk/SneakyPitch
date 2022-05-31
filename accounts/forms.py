@@ -3,6 +3,8 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from GamePLAY.models import *
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 
 # rejestracja
@@ -41,13 +43,16 @@ class CustomUserCreationForm(UserCreationForm):
         help_text='Password again',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password again'}),
     )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, required=True)
 
     class Meta:
         model = User
 
         fields = [
-            'username', 'email', 'first_name', 'last_name', 'password1', 'password2'
+            'username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'captcha'
         ]
+        # feedback = forms.CharField(widget=forms.Textarea, required=True)
+        # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
 
 # tworzenie druzyny
