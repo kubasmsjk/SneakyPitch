@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
-
+import datetime
 
 def login_user(request):
     if request.method == "POST":
@@ -154,19 +154,20 @@ def players_add(request):
                    'form7': form7, 'form8': form8, 'form9': form9, 'form10': form10, 'form11': form11})
 
 @login_required(login_url='main')
-def enter_results(request):
-    queue_objects = Match.objects.all().order_by('queue_number', 'match_date')
-    player_objects=Player.objects.all()
+def enter_results(request,user,home_team,away_team):
+    match_objects = Match.objects.all().filter(match_date__lt=datetime.datetime.now()).order_by('queue_number','match_date')
     if request.method == "POST":
-        form1 = PlayersMatchStatistic(request.POST)
-        form2 = PlayersMatchStatistic(request.POST)
+        form1 = PlayersMatchStatistic(request.POST,home_team=home_team)
+        form2 = PlayersMatchStatistic(request.POST,home_team=away_team)
+        form3 = MatchScore(request.POST)
         if form1.is_valid():
             form1.save()
-
         if form2.is_valid():
             form2.save()
             return HttpResponseRedirect('enter-results')
     else:
-        form1 = PlayersMatchStatistic
-        form2 = PlayersMatchStatistic
-    return render(request, 'enter-the-results.html',{'form1': form1,'form2': form2,'queue_objects': queue_objects,'player_objects': player_objects})
+        form1 = PlayersMatchStatistic(team_name=home_team)
+        form2 = PlayersMatchStatistic(team_name=away_team)
+        form3 = MatchScore
+
+    return render(request, 'enter-the-results.html',{'form1': form1,'form2': form2,'form3': form3,'match_objects': match_objects})

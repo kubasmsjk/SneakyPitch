@@ -14,7 +14,7 @@
     <body>
     <div class="heading-div"><h1 class="heading-h1">MATCH RESULTS</h1></div>
     <div class="right-menu">
-        {% for o in queue_objects %}
+        {% for o in match_objects %}
             <ul>
                 <a href='javascript:MyFunction("{{ o.home_team|safe }}", "{{ o.away_team|safe }}");'>
                     <li>{{ o.home_team }} vs {{ o.away_team }}</li>
@@ -24,13 +24,16 @@
         {% endfor %}
     </div>
     <div class="center">
-        <form action="{% url 'enter-results' %}" method="POST">
+        <form action="{% url 'enter-results' user 'home_team' 'away_team' %}" method="POST">
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col" class="replace-team-name">Home Team</th>
-                    <input class="score-game" name="home_team_goals" type="number" min="0" step="1" value="0">
-                    <input class="score-gamee" name="away_team_goals" type="number" min="0" step="1" value="0">
+                    <th id="game-score">
+                        {% for field in form3 %}
+                            {{ field }}
+                        {% endfor %}
+                    </th>
                     <th scope="col" class="replace-team-name">Away Team</th>
                 </tr>
                 </thead>
@@ -48,6 +51,11 @@
                         {% endfor %}
 
                     </td>
+                    <td id="button-column"><div class="add-players-button">
+                <button type="submit" class="btn btn-primary btn-customized ">
+                    Update
+                </button>
+            </div></td>
                     <td>{% for field in form2 %}
                         <div class="form-group">
                             <label class="formGroupExampleInput" for="{{ field.auto_id }}">{{ field.label }}</label>
@@ -61,7 +69,10 @@
         </form>
     </div>
     {% block js %}
-        <script id="replace-text" src="{% static 'js/replace-teams.js' %}"></script>
+        <script id="replace-text" src="{% static 'js/replace-teams.js' %}">
+        th = document.getElementsByTagName('th')[0].innerHTML =a;
+    th = document.getElementsByTagName('th')[2].innerHTML = b;
+        </script>
     {% endblock js %}
 {% endblock sidebar %}
 </body>

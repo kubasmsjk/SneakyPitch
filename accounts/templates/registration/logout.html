@@ -2,7 +2,7 @@
     <button class="btn btn-customized button-logout">Log out</button>
 </a>
 <a href="{% url 'team-create' %}"> <button class="btn btn-customized ">Create team and players</button></a>
-<a href="{% url 'enter-results' %}"><button class="btn btn-customized ">Enter the results</button></a>
+<a href="{% url 'enter-results' user 'home_team' 'away_team' %}"><button class="btn btn-customized ">Enter the results</button></a>
 {% load  static %}
 
 <script id="username-value"  src="{% static 'js/replace-welcome.js' %}" data-value="{{request.user.username|safe }}"></script>

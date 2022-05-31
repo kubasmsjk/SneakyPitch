@@ -7,5 +7,5 @@ urlpatterns = [
     path('register_user', register_user, name='register'),
     path('team_create', team_create, name='team-create'),
     path('players_add', players_add, name='players-add'),
-    path('enter_results', enter_results, name='enter-results'),
+    path(r'^enter_results/<user>/<str:home_team>/<str:away_team>', enter_results, name='enter-results'),
 ]

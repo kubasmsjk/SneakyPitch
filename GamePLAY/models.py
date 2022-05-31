@@ -44,10 +44,10 @@ class Team(models.Model):
         return self.team_name
 
 
-@receiver(post_save, sender=Team)
-def create_team_statistic(instance, created, **kwargs):
-    if created:
-        TeamStatistic.objects.create(team_name=instance.team_name)
+#@receiver(post_save, sender=Team)
+#def create_team_statistic(instance, created, **kwargs):
+ #   if created:
+  #      TeamStatistic.objects.create(team_name=instance.team_name)
 
 
 class Player(models.Model):

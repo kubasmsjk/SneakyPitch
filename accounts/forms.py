@@ -101,6 +101,15 @@ class PlayersMatchStatistic(ModelForm):
     class Meta:
         model = PlayerStatistic
         fields = ('player', 'number_of_goals', 'number_of_assists', 'number_of_passes', 'number_of_fouls')
+    def __init__(self, team_name, **kwargs):
+        super(PlayersMatchStatistic, self).__init__(**kwargs)
+        self.fields['player'].queryset = Player.objects.all().filter(team__team_name=team_name)
+
+class MatchScore(ModelForm):
+    class Meta:
+        model = Match
+        fields = ('home_team_goals','away_team_goals')
+
 
 
 
