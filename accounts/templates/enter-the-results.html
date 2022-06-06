@@ -1,79 +1,95 @@
 {% extends 'main.html' %}
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="{% static 'css/style-results.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    {% endblock head %}
+</head>
+<body>
 {% block sidebar %}
-    {% load  static %}
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        {% block head %}
-            <meta charset="UTF-8">
-            <title>Title</title>
-            <link rel="stylesheet" href="{% static 'css/styleeee.css' %}">
-            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        {% endblock head %}
-    </head>
-    <body>
-    <div class="heading-div"><h1 class="heading-h1">MATCH RESULTS</h1></div>
-    <div class="right-menu">
-        {% for o in match_objects %}
-            <ul>
-                <a href='javascript:MyFunction("{{ o.home_team|safe }}", "{{ o.away_team|safe }}");'>
-                    <li>{{ o.home_team }} vs {{ o.away_team }}</li>
-                    <li>{{ o.match_date }}</li>
-                </a>
-            </ul>
-        {% endfor %}
-    </div>
-    <div class="center">
-        <form action="{% url 'enter-results' user 'home_team' 'away_team' %}" method="POST">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col" class="replace-team-name">Home Team</th>
-                    <th id="game-score">
-                        {% for field in form3 %}
-                            {{ field }}
-                        {% endfor %}
-                    </th>
-                    <th scope="col" class="replace-team-name">Away Team</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-
-                    <td>
-                        {% csrf_token %}
-
-                        {% for field in form1 %}
-                            <div class="form-group">
-                                <label class="formGroupExampleInput" for="{{ field.auto_id }}">{{ field.label }}</label>
-                                {{ field }}
-                            </div>
-                        {% endfor %}
-
-                    </td>
-                    <td id="button-column"><div class="add-players-button">
-                <button type="submit" class="btn btn-primary btn-customized ">
-                    Update
-                </button>
-            </div></td>
-                    <td>{% for field in form2 %}
-                        <div class="form-group">
-                            <label class="formGroupExampleInput" for="{{ field.auto_id }}">{{ field.label }}</label>
-                            {{ field }}
-                        </div>
-                    {% endfor %}</td>
-                </tr>
-                </tbody>
-
-            </table>
-        </form>
-    </div>
-    {% block js %}
-        <script id="replace-text" src="{% static 'js/replace-teams.js' %}">
-        th = document.getElementsByTagName('th')[0].innerHTML =a;
-    th = document.getElementsByTagName('th')[2].innerHTML = b;
-        </script>
-    {% endblock js %}
 {% endblock sidebar %}
+{% block content %}
+    <div class="content">
+        <div class="heading-div"><h1 class="heading-h1">MATCH RESULTS</h1></div>
+        <div class="right-menu">
+            {% for o in match_objects %}
+                <a id="clicks"
+                   href="{% url 'enter-results' user=user.username|safe id=o.id home_team=o.home_team|safe away_team=o.away_team|safe %}?home_team={{ o.home_team }}&away_team={{ o.away_team }}">
+                    {{ o.home_team|safe }} vs {{ o.away_team|safe }}
+                    <p>{{ o.match_date|safe }}</p>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="center">
+            <form action="{% url 'enter-results' user.username|safe 'id' 'home_team' 'away_team' %}" method="POST">
+                {% csrf_token %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="replace-team-name">Home Team</th>
+                        <th id="game-score">
+                            {% for field in form3 %}
+                                {{ field }}
+                            {% endfor %}
+                        </th>
+                        <th scope="col" class="replace-team-name">Away Team</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="clone-home-team">
+                                {% for form in form1 %}
+                                    <div class="form-group">
+                                        <label class="formGroupExampleInput"
+                                               for="{{ form.auto_id }}">{{ form.label }}</label>
+                                        {{ form }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button type="button" id="add-home-team" class="myButton">+</button>
+                        </td>
+                        <td></td>
+                        <td>
+                            <div class="clone-away-team">
+                                {% for field in form2 %}
+                                    <div class="form-group">
+                                        <label class="formGroupExampleInput"
+                                               for="{{ field.auto_id }}">{{ field.label }}</label>
+                                        {{ field }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button type="button" id="add-away-team" class="myButton">+</button>
+                        </td>
+
+                    </tr>
+                    <tr id="button-column">
+                        <td colspan="3">
+                            <div class="add-players-button">
+                                <button type="submit" class="btn btn-primary btn-customized ">
+                                    Update
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+{% block js %}
+    <script src="{% static 'js/duplicate.js' %}"></script>
+    <script id="replace-text" src="{% static 'js/replace-teams.js' %}"></script>
+{% endblock js %}
+
 </body>
 </html>

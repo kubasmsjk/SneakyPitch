@@ -3,6 +3,7 @@ from .forms import SearchForm
 from .models import *
 from .models import Search
 from django.core.mail import send_mail
+from smtplib import SMTPException
 import folium
 import geocoder
 from django.contrib import messages
@@ -11,12 +12,12 @@ from django.contrib import messages
 # Create your views here.
 def main_view(request):
     static_items = StaticItems.objects.all()
-    #map
+    # map
     if 'find' in request.POST and request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
             form.save()
-            return  redirect('/')
+            return redirect('/' + "#section-1")
     else:
         form = SearchForm()
     address = Search.objects.all().last()
@@ -24,29 +25,36 @@ def main_view(request):
     lat = location.lat
     lng = location.lng
     country = location.country
-    if lat == None or lng == None:
+    if lat is None or lng is None:
         address.delete()
-        return redirect('/', messages.success(request, "This Club doesn't exist, try again"))
-    m = folium.Map(location=[lat,lng], zoom_start=4.5)
-    folium.Marker([lat, lng], tooltip ='Click', popup=country, icon=folium.Icon(color='#f35b3f', icon='futbol-o', prefix='fa')).add_to(m)
+        return redirect('/' + "#base", messages.error(request, "This Club doesn't exist, try again"))
+    m = folium.Map(location=[lat, lng], zoom_start=7.0)
+    folium.Marker([lat, lng], tooltip='Click', popup=country,
+                  icon=folium.Icon(color='red', icon='futbol-o', prefix='fa')).add_to(m)
     m = m._repr_html_()
-    dane_items = {'static_items': static_items,
-                  'm': m,
-                  'form': form,
-                  }
-    #mail
+    context = {'static_items': static_items,
+               'm': m,
+               'form': form,
+               }
+    # mail
     if 'contact' in request.POST and request.method == 'POST':
         email = request.POST['email']
         subject = request.POST['subject']
         message = request.POST['message']
-        if (email == '' or subject == '' or message == ''):
-            messages.success(request, "Fields cannot be empty")
+        if email == '' or subject == '' or message == '':
+            messages.error(request, "Fields cannot be empty")
+            return redirect('/' + '#base')
         else:
-            send_mail(subject, message, email, ['jakm5000@wp.pl'])
-    return render(request, 'main.html', dane_items)
+            try:
+                send_mail(subject, message, email, ['jakm5000@wp.pl'], fail_silently=False)
+            except SMTPException:
+                return redirect('/' + '#base', messages.error(request, "Invalid header found."))
+            return redirect('/' + '#base', messages.success(request, "Thank you for your email"))
+    return render(request, 'main.html', context)
+
 
 def tables_view(request):
-    team_objects = Team.objects.all().order_by('-points')
+    team_objects = Team.objects.all().order_by('-number_of_points')
     context = {
         'team_objects': team_objects
     }
@@ -72,4 +80,4 @@ def shooters_rank_view(request):
         'player_rank': player_rank
     }
 
-    return render(request, 'shootersRank.html', context)
+    return render(request, 'shooters-rank.html', context)

@@ -1,31 +1,32 @@
 {% extends 'main.html' %}
+{% load  static %}
+<html lang="en">
+<head>
+    {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+        <!-- Style -->
+        <link rel="stylesheet" href="{% static 'css/style-subpages.css' %}">
+        <title>{% block title %}Queues{% endblock %}</title>
+    {% endblock head %}
+</head>
+<body>
 {% block sidebar %}
-    {% load  static %}
-    <html lang="en">
-    <head>
-        {% block head %}
-            <!-- Required meta tags -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-            <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-
-            <!-- Style -->
-            <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
-            <title>{% block title %}Queues{% endblock %}</title>
-        {% endblock head %}
-    </head>
-    <body>
-
+{% endblock sidebar %}
+{% block content %}
 
     <div class="content">
 
         <div class="container">
-            <h2 class="mb-5">La Liga</h2>
+            <h2 class="mb-5" id="heading-name">La Liga</h2>
 
 
             <div class="table-responsive">
@@ -161,9 +162,8 @@
         </div>
 
     </div>
-
-    {% block js %}
-    {% endblock js %}
-{% endblock sidebar %}
+{% endblock content %}
+{% block js %}
+{% endblock js %}
 </body>
 </html>

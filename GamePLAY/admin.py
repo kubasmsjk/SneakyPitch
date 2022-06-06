@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-
 # Register your models here.
 admin.site.register(Search)
 
@@ -21,7 +20,9 @@ class PlayerAdmin(admin.ModelAdmin):
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ['team_name', 'stadium_name', 'coach_name', 'creation_date', 'points']
+    list_display = ['team_name', 'stadium_name', 'coach_name', 'creation_date', 'game_played',
+                    'number_of_goals_diffrence', 'number_of_points', 'league_name',
+                    'add_by']
     inlines = [
         PlayerInLIne
     ]
@@ -29,8 +30,9 @@ class TeamAdmin(admin.ModelAdmin):
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    search_fields = ['home_team__team_name', 'visiting_team__team_name']
-    list_display = ['home_team', 'away_team', 'match_date', 'queue_number', 'home_team_goals', 'away_team_goals']
+    search_fields = ['home_team__team_name', 'away_team__team_name']
+    list_display = ['home_team', 'away_team', 'match_date', 'queue_number', 'home_team_goals', 'away_team_goals',
+                    'status']
 
 
 @admin.register(League)
@@ -40,19 +42,19 @@ class LeagueAdmin(admin.ModelAdmin):
 
 @admin.register(PlayerStatistic)
 class PlayerStatisticAdmin(admin.ModelAdmin):
-    list_display = ['player', 'team_name', 'home_team', 'away_team', 'number_of_goals', 'number_of_assists',
-                    'number_of_passes',
-                    'number_of_fouls']
+    list_display = ['player', 'team_name', 'number_of_goals', 'number_of_assists',
+                    'number_of_fouls', 'card']
 
 
 @admin.register(TeamStatistic)
 class TeamStatisticAdmin(admin.ModelAdmin):
-    list_display = ['team_name', 'number_of_goals', 'number_of_passes',
-                    'number_of_fouls']
+    list_display = ['team_name', 'game_played', 'number_of_win',
+                    'number_of_draw', 'number_of_losses', 'number_of_goals_for', 'number_of_goals_against',
+                    'number_of_goals_diffrence', 'number_of_points']
 
 
 @admin.register(StaticItems)
 class StaticItems(admin.ModelAdmin):
-    list_display = ['main_background_image','contact_us_background_image', 'link']
+    list_display = ['main_background_image', 'contact_us_background_image', 'link']
     list_display_links = ['link']
-    list_editable = ['main_background_image','contact_us_background_image']
+    list_editable = ['main_background_image', 'contact_us_background_image']

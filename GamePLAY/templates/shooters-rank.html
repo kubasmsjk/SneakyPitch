@@ -1,5 +1,6 @@
 <!doctype html>
 {% extends 'main.html' %}
+
 {% load  static %}
 <html lang="en">
 <head>
@@ -16,18 +17,17 @@
 
         <!-- Style -->
         <link rel="stylesheet" href="{% static 'css/style-subpages.css' %}">
-        <title>{% block title %}Tables{% endblock %}</title>
+        <title>{% block title %}Shooters Rank{% endblock %}</title>
     {% endblock head %}
 </head>
 <body>
 {% block sidebar %}
 {% endblock sidebar %}
 {% block content %}
-
     <div class="content">
 
         <div class="container">
-            <h2 class="mb-5" id="heading-name">La Liga</h2>
+            <h2 class="mb-5" id="heading-name">TOP 10 SHOOTERS</h2>
 
 
             <div class="table-responsive">
@@ -35,19 +35,19 @@
                 <table class="table table-striped custom-table">
                     <thead>
                     <tr>
-                        <th scope="col" id="league-date">2021-2022</th>
-                        <th scope="col">Game Played</th>
-                        <th scope="col">Goal Difference</th>
-                        <th scope="col">Points</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Number of goals</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        {% for o in team_objects %}
-                            <td id="team-name">{{ o.team_name }}</td>
-                            <td>{{ o.game_played}}</td>
-                            <td>{{ o.number_of_goals_diffrence}}</td>
-                            <td>{{ o.number_of_points}}</td>
+                        {% for o in player_rank %}
+                            <td>{{ o.first_name }}</td>
+                            <td>{{ o.last_name }}</td>
+                            <td>{{ o.team }}</td>
+                            <td>{{ o.number_of_goals }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

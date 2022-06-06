@@ -1,7 +1,3 @@
-<head>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-</head>
-<body>
 <form action="{% url 'register' %}" class="form-register" method="POST">
     {% csrf_token %}
     <div class="row">
@@ -126,4 +122,3 @@
         </div>
     </div>
 </form>
-</body>

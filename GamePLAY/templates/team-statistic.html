@@ -37,6 +37,11 @@
                     <tr>
                         <th scope="col" id="league-date">2021-2022</th>
                         <th scope="col">Game Played</th>
+                        <th scope="col">Win</th>
+                        <th scope="col">Draw</th>
+                        <th scope="col">Losses</th>
+                        <th scope="col">Goals For</th>
+                        <th scope="col">Goals Against</th>
                         <th scope="col">Goal Difference</th>
                         <th scope="col">Points</th>
                     </tr>
@@ -45,9 +50,14 @@
                     <tr>
                         {% for o in team_objects %}
                             <td id="team-name">{{ o.team_name }}</td>
-                            <td>{{ o.game_played}}</td>
-                            <td>{{ o.number_of_goals_diffrence}}</td>
-                            <td>{{ o.number_of_points}}</td>
+                            <td>Game Played</td>
+                            <td>Win</td>
+                            <td>Draw</td>
+                            <td>Losses</td>
+                            <td>Goals For</td>
+                            <td>Goals Against</td>
+                            <td>Goal Difference</td>
+                            <td>{{ o.points }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

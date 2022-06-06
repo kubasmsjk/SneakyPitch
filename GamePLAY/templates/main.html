@@ -13,6 +13,7 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% endblock head %}
 
@@ -94,7 +95,7 @@
     <div class="overlay"></div>
 
     <!-- Content -->
-    <div class="content">
+    <div class="content" id="base">
 
         <!-- open sidebar menu -->
         <a class="btn btn-primary btn-customized open-menu" href="#" role="button">
@@ -126,7 +127,7 @@
 
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 {{ message }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="refreshPage()">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -153,37 +154,22 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="section-1-form">
-                                    <form method="POST">
-                                        {% csrf_token %}
-                                        <p>
-                                        <div class="form-group">
-                                            {{ form }}
-                                        </div>
-                                        <button type="submit" name="find"  class="btn btn-primary btn-customized"> Find
-                                        </button>
-                                        </p>
-                                    </form>
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {{ form }}
+                                            </div>
+                                            <button  type="submit" name="find" id="find-button" class="btn btn-primary btn-customized">
+                                                Find
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 section-1-box wow fadeInDown">
                             <div class="row">
-
-
                                 {{ m|safe }}
-
-                            </div>
-                        </div>
-                        <div class="col-md-4 section-1-box wow fadeInUp">
-                            <div class="row">
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-8">
-                                    <h3>Social media</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -233,6 +219,8 @@
         </div>
         </div>
         {% endblock sidebar %}
+    {% block content %}
+    {% endblock content %}
         <!-- Footer -->
         <footer class="footer-container">
 
@@ -274,6 +262,7 @@
     <script src="{% static 'js/imagescript.js' %}"></script>
     <script src="{% static 'js/wow.min.js' %}"></script>
     <script src="{% static 'js/login.js' %}"></script>
+    <script src="{% static 'js/refresh-after-message.js' %}"></script>
 {% endblock js %}
 
 

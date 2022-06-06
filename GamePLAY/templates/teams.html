@@ -15,22 +15,20 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
         <!-- Style -->
-        <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style-subpages.css' %}">
         <title>{% block title %}Teams{% endblock %}</title>
     {% endblock head %}
 </head>
 <body>
 {% block sidebar %}
+{% endblock sidebar %}
+{% block content %}
     <div class="content">
 
         <div class="container">
-            <h2 class="mb-5">TEAMS</h2>
-
+            <h2 class="mb-5" id="heading-name">TEAMS</h2>
 
             <div class="table-responsive">
-                <p>
-                    <a class="more">Details</a>
-                </p>
                 <table class="table table-striped custom-table">
                     <thead>
                     <tr>
@@ -50,18 +48,6 @@
                             <td>{{ o.creation_date }}</td>
                             <td>{{ o.league_name }}</td>
                             </tr>
-                            <tr>
-                                {% for i in o.player_set.all %}
-                                    <tr class="details-list">
-
-                                    <td>{{ i.first_name }}</td>
-                                    <td>{{ i.last_name }}</td>
-                                    <td>{{ i.date_of_birth }}</td>
-                                    <td>{{ i.player_position }}</td>
-                                    <td>{{ i.country }}</td>
-                                    <td>{{ i.team }}</td>
-                                {% endfor %}
-                                </tr>
                         {% endfor %}
                     </tbody>
 
@@ -70,9 +56,8 @@
         </div>
 
     </div>
-{% endblock sidebar %}
+{% endblock content %}
 {% block js %}
-    <script src="{% static 'js/dropdownmenu.js' %}"></script>
 {% endblock js %}
 </body>
 </html>
