@@ -3,9 +3,10 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from GamePLAY.models import *
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 
-# rejestracja
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
         max_length=100,
@@ -41,16 +42,16 @@ class CustomUserCreationForm(UserCreationForm):
         help_text='Password again',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password again'}),
     )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, required=True)
 
     class Meta:
         model = User
 
         fields = [
-            'username', 'email', 'first_name', 'last_name', 'password1', 'password2'
+            'username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'captcha'
         ]
 
 
-# tworzenie druzyny
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -77,7 +78,6 @@ class CreateTeam(ModelForm):
         }
 
 
-# tworzenie graczy
 class CreatePlayers(ModelForm):
     class Meta:
         model = Player
@@ -89,6 +89,22 @@ class CreatePlayers(ModelForm):
             'last_name': forms.TextInput(
                 attrs={'class': 'input-element1', 'placeholder': 'Last name'}),
         }
+
+
+class PlayersMatchStatistic(ModelForm):
+    class Meta:
+        model = PlayerStatistic
+        fields = ('player', 'number_of_goals', 'number_of_assists', 'number_of_fouls', 'card')
+
+    def __init__(self, team_name, **kwargs):
+        super(PlayersMatchStatistic, self).__init__(**kwargs)
+        self.fields['player'].queryset = Player.objects.all().filter(team__team_name=team_name)
+
+
+class MatchScore(ModelForm):
+    class Meta:
+        model = Match
+        fields = ('home_team_goals', 'away_team_goals')
 
 # def clean(self, *args, **kwargs):
 #     data = super().clean(*args, **kwargs)

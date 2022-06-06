@@ -1,32 +1,33 @@
 <!doctype html>
 {% extends 'main.html' %}
+{% load  static %}
+<html lang="en">
+<head>
+    {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+        <!-- Style -->
+        <link rel="stylesheet" href="{% static 'css/style-subpages.css' %}">
+        <title>{% block title %}Tables{% endblock %}</title>
+    {% endblock head %}
+</head>
+<body>
 {% block sidebar %}
-    {% load  static %}
-    <html lang="en">
-    <head>
-        {% block head %}
-            <!-- Required meta tags -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-            <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-
-            <!-- Style -->
-            <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
-            <title>{% block title %}Tables{% endblock %}</title>
-        {% endblock head %}
-    </head>
-    <body>
-
+{% endblock sidebar %}
+{% block content %}
 
     <div class="content">
 
         <div class="container">
-            <h2 class="mb-5">La Liga</h2>
+            <h2 class="mb-5" id="heading-name">La Liga</h2>
 
 
             <div class="table-responsive">
@@ -34,15 +35,19 @@
                 <table class="table table-striped custom-table">
                     <thead>
                     <tr>
-                        <th scope="col">Team</th>
+                        <th scope="col" id="league-date">2021-2022</th>
+                        <th scope="col">Game Played</th>
+                        <th scope="col">Goal Difference</th>
                         <th scope="col">Points</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         {% for o in team_objects %}
-                            <td>{{ o.team_name }}</td>
-                            <td>{{ o.points }}</td>
+                            <td id="team-name">{{ o.team_name }}</td>
+                            <td>{{ o.game_played}}</td>
+                            <td>{{ o.number_of_goals_diffrence}}</td>
+                            <td>{{ o.number_of_points}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -52,9 +57,8 @@
         </div>
 
     </div>
-
-    {% block js %}
-    {% endblock js %}
-{% endblock sidebar %}
+{% endblock content %}
+{% block js %}
+{% endblock js %}
 </body>
 </html>

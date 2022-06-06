@@ -100,11 +100,20 @@
         <div class="col-md-12">
             <div class="form-group">
                 <div class="custom-control">
-                    <p>recaptche</p>
+                <div class="g-recaptcha" data-sitekey="6LcjIi0gAAAAABV5sG_4t5jdd5AS3OuESsr8cglK" ></div>
                 </div>
             </div>
         </div>
+        {% if form.captcha.errors %}
+            {% for error in form.captcha.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+
         <div class="col-md-12">
+
             <button class="btn btn-customized" type="submit">Register</button>
         </div>
         <div class="mx-auto">

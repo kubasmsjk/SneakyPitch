@@ -1,10 +1,11 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
+from django.utils import timezone
 
 
 def login_user(request):
@@ -59,8 +60,17 @@ def team_create(request):
     if request.method == "POST":
         form = CreateTeam(request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('players_add')
+            team = Team(team_name=form.cleaned_data['team_name'], stadium_name=form.cleaned_data['stadium_name'],
+                        coach_name=form.cleaned_data['coach_name'],
+                        creation_date=form.cleaned_data['creation_date'], league_name=form.cleaned_data['league_name'],
+                        add_by=request.user.username)
+            team.save()
+        else:
+            if datetime.datetime.strptime(request.POST['creation_date'], '%Y-%m-%d') >= timezone.datetime.today():
+                return HttpResponseRedirect('team_create', messages.error(request, "Invalid date."))
+            else:
+                return HttpResponseRedirect('team_create', messages.error(request, "This team exist."))
+        return HttpResponseRedirect('players_add')
     else:
         form = CreateTeam
     return render(request, 'team-create.html', {'form': form})
@@ -83,57 +93,68 @@ def players_add(request):
         if form1.is_valid():
             player1 = Player(first_name=form1.cleaned_data['first_name'], last_name=form1.cleaned_data['last_name'],
                              player_position=form1.cleaned_data['player_position'],
-                             country=form1.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form1.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player1.save()
         if form2.is_valid():
             player2 = Player(first_name=form2.cleaned_data['first_name'], last_name=form2.cleaned_data['last_name'],
                              player_position=form2.cleaned_data['player_position'],
-                             country=form2.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form2.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player2.save()
         if form3.is_valid():
             player3 = Player(first_name=form3.cleaned_data['first_name'], last_name=form3.cleaned_data['last_name'],
                              player_position=form3.cleaned_data['player_position'],
-                             country=form3.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form3.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player3.save()
         if form4.is_valid():
-            player4= Player(first_name=form4.cleaned_data['first_name'], last_name=form4.cleaned_data['last_name'],
+            player4 = Player(first_name=form4.cleaned_data['first_name'], last_name=form4.cleaned_data['last_name'],
                              player_position=form4.cleaned_data['player_position'],
-                             country=form4.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form4.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player4.save()
         if form5.is_valid():
             player5 = Player(first_name=form5.cleaned_data['first_name'], last_name=form5.cleaned_data['last_name'],
                              player_position=form5.cleaned_data['player_position'],
-                             country=form5.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form5.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player5.save()
         if form6.is_valid():
             player6 = Player(first_name=form6.cleaned_data['first_name'], last_name=form6.cleaned_data['last_name'],
                              player_position=form6.cleaned_data['player_position'],
-                             country=form6.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form6.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player6.save()
         if form7.is_valid():
             player7 = Player(first_name=form7.cleaned_data['first_name'], last_name=form7.cleaned_data['last_name'],
                              player_position=form7.cleaned_data['player_position'],
-                             country=form7.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form7.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player7.save()
         if form8.is_valid():
             player8 = Player(first_name=form8.cleaned_data['first_name'], last_name=form8.cleaned_data['last_name'],
                              player_position=form8.cleaned_data['player_position'],
-                             country=form8.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form8.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player8.save()
         if form9.is_valid():
             player9 = Player(first_name=form9.cleaned_data['first_name'], last_name=form9.cleaned_data['last_name'],
                              player_position=form9.cleaned_data['player_position'],
-                             country=form9.cleaned_data['country'], team=Team.objects.all().last())
+                             country=form9.cleaned_data['country'],
+                             team=Team.objects.all().filter(add_by=request.user.username).last())
             player9.save()
         if form10.is_valid():
             player10 = Player(first_name=form10.cleaned_data['first_name'], last_name=form10.cleaned_data['last_name'],
-                             player_position=form10.cleaned_data['player_position'],
-                             country=form10.cleaned_data['country'], team=Team.objects.all().last())
+                              player_position=form10.cleaned_data['player_position'],
+                              country=form10.cleaned_data['country'],
+                              team=Team.objects.all().filter(add_by=request.user.username).last())
             player10.save()
         if form11.is_valid():
             player11 = Player(first_name=form11.cleaned_data['first_name'], last_name=form11.cleaned_data['last_name'],
-                             player_position=form11.cleaned_data['player_position'],
-                             country=form11.cleaned_data['country'], team=Team.objects.all().last())
+                              player_position=form11.cleaned_data['player_position'],
+                              country=form11.cleaned_data['country'],
+                              team=Team.objects.all().filter(add_by=request.user.username).last())
             player11.save()
             return HttpResponseRedirect('team_create')
     else:
@@ -152,3 +173,56 @@ def players_add(request):
     return render(request, 'players-create.html',
                   {'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4, 'form5': form5, 'form6': form6,
                    'form7': form7, 'form8': form8, 'form9': form9, 'form10': form10, 'form11': form11})
+
+
+@login_required(login_url='main')
+def enter_results(request, user, id, home_team, away_team):
+    match_objects = Match.objects.all().filter(match_date__lt=datetime.datetime.now(), status=False,
+                                               home_team__add_by=request.user).order_by(
+        'queue_number',
+        'match_date')
+    id=Match.objects.last().id
+    instance_match = get_object_or_404(Match, id=id)
+    if request.method == "POST":
+        #instance_player = get_object_or_404(PlayerStatistic, id=)
+        form1 = PlayersMatchStatistic(request.POST, home_team=home_team)
+        form2 = PlayersMatchStatistic(request.POST, home_team=away_team)
+        form3 = MatchScore(request.POST, instance=instance_match)
+        if form1.is_valid():
+            home_player = Player(player=form1.cleaned_data['player'], team_name=home_team,
+                                 number_of_goals=form1.cleaned_data['number_of_goals'],
+                                 number_of_assists=form1.cleaned_data['number_of_assists'],
+                                 number_of_fouls=form1.cleaned_data['number_of_fouls'],
+                                 card=form1.cleaned_data['card'])
+            home_player1 = Player(player=form1.cleaned_data['player0'], team_name=home_team,
+                                  number_of_goals=form1.cleaned_data['number_of_goals0'],
+                                  number_of_assists=form1.cleaned_data['number_of_assists0'],
+                                  number_of_fouls=form1.cleaned_data['number_of_fouls0'],
+                                  card=form1.cleaned_data['card0'])
+            home_player.save()
+            home_player1.save()
+        if form2.is_valid():
+            away_player = Player(player=form2.cleaned_data['player'], team_name=home_team,
+                                 number_of_goals=form2.cleaned_data['number_of_goals'],
+                                 number_of_assists=form2.cleaned_data['number_of_assists'],
+                                 number_of_fouls=form2.cleaned_data['number_of_fouls'],
+                                 card=form2.cleaned_data['card'])
+            away_player1 = Player(player=form2.cleaned_data['player0'], team_name=home_team,
+                                  number_of_goals=form2.cleaned_data['number_of_goals0'],
+                                  number_of_assists=form2.cleaned_data['number_of_assists0'],
+                                  number_of_fouls=form2.cleaned_data['number_of_fouls0'],
+                                  card=form2.cleaned_data['card0'])
+            away_player.save()
+            away_player1.save()
+        if form3.is_valid():
+            match_score = Match(home_team_goals=form3.cleaned_data['home_team_goals'],
+                                away_team_goals=form3.cleaned_data['away_team_goals'])
+            match_score.save()
+            return HttpResponseRedirect('enter-results')
+    else:
+        form1 = PlayersMatchStatistic(team_name=home_team)
+        form2 = PlayersMatchStatistic(team_name=away_team)
+        form3 = MatchScore(instance=instance_match)
+
+    return render(request, 'enter-the-results.html',
+                  {'form1': form1, 'form2': form2, 'form3': form3, 'match_objects': match_objects})

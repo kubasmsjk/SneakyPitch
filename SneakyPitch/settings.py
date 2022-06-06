@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,6 @@ LOGOUT_REDIRECT_URL = 'main'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 SECURE_REFERRER_POLICY = 'none'
+
+RECAPTCHA_PUBLIC_KEY = '6LcjIi0gAAAAABV5sG_4t5jdd5AS3OuESsr8cglK'
+RECAPTCHA_PRIVATE_KEY = '6LcjIi0gAAAAAO9N1nHAnyVKms_c-hI9eJL3sBoT'
