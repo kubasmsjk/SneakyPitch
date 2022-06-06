@@ -61,7 +61,7 @@ body {
     background: rgba(250, 250, 250, 0.5);
     border-radius: 7px;
     font-family: 'Member Kinglify', sans-serif;
-    font-size: 26px;
+    font-size: 22px;
     color: #000000;
     -webkit-text-stroke: 0.3px #ffffff;
 }
@@ -87,9 +87,7 @@ th:last-child {
 
 
 #game-score {
-
-    width: 200px;
-
+    width: 10%;
 }
 
 #id_home_team_goals {
@@ -106,22 +104,23 @@ th:last-child {
     border-color: #ffffff;
 }
 
-#id_player_name {
-    width: 100px;
-    margin: 15px 15px 15px 15px;
-    padding: 2px 2px 2px 2px;
+#id_player {
+    width: 110px;
+    border-radius: 7px;
+    border-color: #ffffff;
+}
+
+#id_card {
+    width: 70px;
     border-radius: 7px;
     border-color: #ffffff;
 }
 
 #id_number_of_fouls,
 #id_number_of_goals,
-#id_number_of_assists,
-#id_number_of_passes {
+#id_number_of_assists {
 
     width: 50px;
-    margin: 15px 15px 15px 15px;
-    padding: 2px 2px 2px 2px;
     border-radius: 7px;
     border-color: #ffffff;
 }
@@ -183,8 +182,14 @@ a:active {
 
 .add-players-button {
     display: block;
-    margin-left: 35px;
-    margin-top: 35px;
+    width: 20%; /* setting the width */
+    margin: 0 auto; /* this will center  it */
+    position: relative;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
 
 }
 
