@@ -91,14 +91,30 @@ class CreatePlayers(ModelForm):
         }
 
 
-class PlayersMatchStatistic(ModelForm):
+class HomePlayersMatchStatistic(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        home_team = kwargs.pop('home_team', None)
+        super(HomePlayersMatchStatistic, self).__init__(*args, **kwargs)
+        self.fields['player'].queryset = Player.objects.all().filter(team__team_name=home_team)
+
     class Meta:
         model = PlayerStatistic
         fields = ('player', 'number_of_goals', 'number_of_assists', 'number_of_fouls', 'card')
 
-    def __init__(self, team_name, **kwargs):
-        super(PlayersMatchStatistic, self).__init__(**kwargs)
-        self.fields['player'].queryset = Player.objects.all().filter(team__team_name=team_name)
+
+class AwayPlayersMatchStatistic(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        away_team = kwargs.pop('away_team', None)
+        super(AwayPlayersMatchStatistic, self).__init__(*args, **kwargs)
+        self.fields['player'].queryset = Player.objects.all().filter(team__team_name=away_team)
+
+    class Meta:
+        model = PlayerStatistic
+        fields = ('player', 'number_of_goals', 'number_of_assists', 'number_of_fouls', 'card')
+
+
 
 
 class MatchScore(ModelForm):

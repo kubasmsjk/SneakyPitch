@@ -99,8 +99,6 @@ class Match(models.Model):
     def clean(self):
         if self.home_team == self.away_team:
             raise ValidationError("Error: Two teams with the same name.")
-       # if self.match_date.date() < datetime.date.today():
-         #   raise ValidationError('Error: invalid date.')
 
     class Meta:
         verbose_name = "Match"

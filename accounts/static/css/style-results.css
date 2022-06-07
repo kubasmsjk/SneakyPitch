@@ -104,21 +104,26 @@ th:last-child {
     border-color: #ffffff;
 }
 
-#id_player {
+#id_form2-player,
+#id_form3-player{
     width: 110px;
     border-radius: 7px;
     border-color: #ffffff;
 }
 
-#id_card {
+#id_form2-card,
+#id_form3-card{
     width: 70px;
     border-radius: 7px;
     border-color: #ffffff;
 }
 
-#id_number_of_fouls,
-#id_number_of_goals,
-#id_number_of_assists {
+#id_form2-number_of_fouls,
+#id_form2-number_of_goals,
+#id_form2-number_of_assists,
+#id_form3-number_of_fouls,
+#id_form3-number_of_goals,
+#id_form3-number_of_assists {
 
     width: 50px;
     border-radius: 7px;
