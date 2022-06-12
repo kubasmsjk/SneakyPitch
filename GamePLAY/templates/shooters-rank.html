@@ -35,6 +35,7 @@
                 <table class="table table-striped custom-table">
                     <thead>
                     <tr>
+                        <th></th>
                         <th scope="col">First name</th>
                         <th scope="col">Last name</th>
                         <th scope="col">Team</th>
@@ -44,6 +45,7 @@
                     <tbody>
                     <tr>
                         {% for o in player_rank %}
+                            <td>{{ forloop.counter }}. </td>
                             <td>{{ o.first_name }}</td>
                             <td>{{ o.last_name }}</td>
                             <td>{{ o.team }}</td>

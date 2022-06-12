@@ -418,28 +418,8 @@ a.btn-customized-3 i {
 
 /***** Section 1 *****/
 
-
-
 .section-1-box {
     padding-top: 30px;
-    text-align: left;
-}
-
-.section-1-box .section-1-box-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto;
-    border: 1px solid #f35b3f;
-    font-size: 40px;
-    color: #f35b3f;
-    line-height: 78px;
-    text-align: center;
-    border-radius: 50%;
-}
-
-.section-1-box h3 {
-    margin-top: 0;
-    padding: 0 0 40px 0;
 }
 
 .section-1-form button.btn-customized {
@@ -453,6 +433,7 @@ a.btn-customized-3 i {
     color: #fff;
     box-shadow: none;
 }
+
 
 .section-1-form button.btn-customized:hover,
 .section-1-form button.btn-customized:active,
@@ -697,3 +678,4 @@ button.button-logout {
 .two{
     display: none;
 }
+

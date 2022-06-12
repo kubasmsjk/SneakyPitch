@@ -27,7 +27,7 @@ class Team(models.Model):
     coach_name = models.CharField(max_length=50)
     creation_date = models.DateField(null=True)
     game_played = models.PositiveIntegerField(default=0)
-    number_of_goals_diffrence = models.PositiveIntegerField(default=0)
+    number_of_goals_diffrence = models.IntegerField(default=0)
     number_of_points = models.PositiveIntegerField(default=0)
     league_name = models.ForeignKey(League, on_delete=models.CASCADE, default='')
     add_by = models.CharField(max_length=50)
@@ -53,7 +53,7 @@ def create_team_statistic(instance, created, **kwargs):
 
 @receiver(post_delete, sender=Team)
 def delete_player_statistic(instance, **kwargs):
-    TeamStatistic.objects.filter(pk=instance.pk).delete()
+    TeamStatistic.objects.filter(team_name=instance.team_name).delete()
 
 class Player(models.Model):
     PLAYER_POSITION = [
@@ -77,11 +77,6 @@ class Player(models.Model):
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)
 
-@receiver(post_save, sender=Player)
-def create_team_statistic(instance, created, **kwargs):
-    if created:
-        PlayerStatistic.objects.create(player_id=instance.pk,team_name=instance.team, number_of_goals=instance.number_of_goals)
-
 @receiver(post_delete, sender=Player)
 def delete_player_statistic(instance, **kwargs):
     PlayerStatistic.objects.filter(pk=instance.pk).delete()
@@ -99,8 +94,6 @@ class Match(models.Model):
     def clean(self):
         if self.home_team == self.away_team:
             raise ValidationError("Error: Two teams with the same name.")
-       # if self.match_date.date() < datetime.date.today():
-         #   raise ValidationError('Error: invalid date.')
 
     class Meta:
         verbose_name = "Match"
@@ -117,6 +110,7 @@ class PlayerStatistic(models.Model):
         ('RE', 'Red'),
     ]
     player = models.ForeignKey(Player, on_delete=models.CASCADE, default='')
+    match = models.ForeignKey(Match, on_delete=models.CASCADE, default='')
     team_name = models.CharField(max_length=50, blank=True, default='')
     number_of_goals = models.PositiveIntegerField(default=0)
     number_of_assists = models.PositiveIntegerField(default=0)
@@ -126,7 +120,6 @@ class PlayerStatistic(models.Model):
     class Meta:
         verbose_name = "PlayerStatistic"
         verbose_name_plural = "PlayerStatistics"
-
 
 @receiver(post_save, sender=PlayerStatistic)
 def update_Player(sender, instance, created, **kwargs):
@@ -142,7 +135,7 @@ class TeamStatistic(models.Model):
     number_of_losses = models.PositiveIntegerField(default=0)
     number_of_goals_for = models.PositiveIntegerField(default=0)
     number_of_goals_against = models.PositiveIntegerField(default=0)
-    number_of_goals_diffrence = models.PositiveIntegerField(default=0)
+    number_of_goals_diffrence = models.IntegerField(default=0)
     number_of_points = models.PositiveIntegerField(default=0)
 
     class Meta:

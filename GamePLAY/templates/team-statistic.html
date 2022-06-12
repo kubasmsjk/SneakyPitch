@@ -16,7 +16,7 @@
 
         <!-- Style -->
         <link rel="stylesheet" href="{% static 'css/style-subpages.css' %}">
-        <title>{% block title %}Tables{% endblock %}</title>
+        <title>{% block title %}Team Statistic{% endblock %}</title>
     {% endblock head %}
 </head>
 <body>
@@ -48,16 +48,16 @@
                     </thead>
                     <tbody>
                     <tr>
-                        {% for o in team_objects %}
+                        {% for o in team_statistic %}
                             <td id="team-name">{{ o.team_name }}</td>
-                            <td>Game Played</td>
-                            <td>Win</td>
-                            <td>Draw</td>
-                            <td>Losses</td>
-                            <td>Goals For</td>
-                            <td>Goals Against</td>
-                            <td>Goal Difference</td>
-                            <td>{{ o.points }}</td>
+                            <td>{{ o.game_played}}</td>
+                            <td>{{ o.number_of_win}}</td>
+                            <td>{{ o.number_of_draw}}</td>
+                            <td>{{ o.number_of_losses}}</td>
+                            <td>{{ o.number_of_goals_for}}</td>
+                            <td>{{ o.number_of_goals_against}}</td>
+                            <td>{{ o.number_of_goals_diffrence}}</td>
+                            <td>{{ o.number_of_points}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

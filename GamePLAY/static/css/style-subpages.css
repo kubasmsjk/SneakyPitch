@@ -333,6 +333,14 @@ a.btn-customized-3 i {
 #league-date{
     border-right:solid 1px #000000;
 }
+.queue-number{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 23px;
+    letter-spacing: .2rem;
+}
 .custom-table thead tr, .custom-table thead th {
     padding-bottom: 30px;
     border-top: none;

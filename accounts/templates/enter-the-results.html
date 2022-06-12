@@ -16,26 +16,38 @@
 {% block content %}
     <div class="content">
         <div class="heading-div"><h1 class="heading-h1">MATCH RESULTS</h1></div>
+        <div class="message">
+            {% if messages %}
+                {% for message in messages %}
+
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                onClick="refreshPage()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div class="right-menu">
             {% for o in match_objects %}
                 <a id="clicks"
-                   href="{% url 'enter-results' user=user.username|safe id=o.id home_team=o.home_team|safe away_team=o.away_team|safe %}?home_team={{ o.home_team }}&away_team={{ o.away_team }}">
+                   href="{% url 'enter-results' user=user.username id=o.id home_team=o.home_team away_team=o.away_team %}?user={{ user.username }}&id={{ o.id }}&home_team={{ o.home_team }}&away_team={{ o.away_team }}">
                     {{ o.home_team|safe }} vs {{ o.away_team|safe }}
                     <p>{{ o.match_date|safe }}</p>
                 </a>
             {% endfor %}
         </div>
         <div class="center">
-            <form action="{% url 'enter-results' user.username|safe 'id' 'home_team' 'away_team' %}" method="POST">
+            <form method="POST" id="search-theme-form">
                 {% csrf_token %}
+
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col" class="replace-team-name">Home Team</th>
                         <th id="game-score">
-                            {% for field in form3 %}
-                                {{ field }}
-                            {% endfor %}
                         </th>
                         <th scope="col" class="replace-team-name">Away Team</th>
                     </tr>
@@ -44,11 +56,11 @@
                     <tr>
                         <td>
                             <div class="clone-home-team">
-                                {% for form in form1 %}
+                                {% for field in form1 %}
                                     <div class="form-group">
                                         <label class="formGroupExampleInput"
-                                               for="{{ form.auto_id }}">{{ form.label }}</label>
-                                        {{ form }}
+                                               for="{{ field.auto_id }}">{{ field.label }}</label>
+                                        {{ field }}
                                     </div>
                                 {% endfor %}
                             </div>

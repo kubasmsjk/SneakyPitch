@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -176,53 +176,429 @@ def players_add(request):
 
 
 @login_required(login_url='main')
-def enter_results(request, user, id, home_team, away_team):
+def enter_results(request, user=None, id=None, home_team=None, away_team=None):
     match_objects = Match.objects.all().filter(match_date__lt=datetime.datetime.now(), status=False,
-                                               home_team__add_by=request.user).order_by(
-        'queue_number',
-        'match_date')
-    id=Match.objects.last().id
-    instance_match = get_object_or_404(Match, id=id)
-    if request.method == "POST":
-        #instance_player = get_object_or_404(PlayerStatistic, id=)
-        form1 = PlayersMatchStatistic(request.POST, home_team=home_team)
-        form2 = PlayersMatchStatistic(request.POST, home_team=away_team)
-        form3 = MatchScore(request.POST, instance=instance_match)
-        if form1.is_valid():
-            home_player = Player(player=form1.cleaned_data['player'], team_name=home_team,
-                                 number_of_goals=form1.cleaned_data['number_of_goals'],
-                                 number_of_assists=form1.cleaned_data['number_of_assists'],
-                                 number_of_fouls=form1.cleaned_data['number_of_fouls'],
-                                 card=form1.cleaned_data['card'])
-            home_player1 = Player(player=form1.cleaned_data['player0'], team_name=home_team,
-                                  number_of_goals=form1.cleaned_data['number_of_goals0'],
-                                  number_of_assists=form1.cleaned_data['number_of_assists0'],
-                                  number_of_fouls=form1.cleaned_data['number_of_fouls0'],
-                                  card=form1.cleaned_data['card0'])
-            home_player.save()
-            home_player1.save()
-        if form2.is_valid():
-            away_player = Player(player=form2.cleaned_data['player'], team_name=home_team,
-                                 number_of_goals=form2.cleaned_data['number_of_goals'],
-                                 number_of_assists=form2.cleaned_data['number_of_assists'],
-                                 number_of_fouls=form2.cleaned_data['number_of_fouls'],
-                                 card=form2.cleaned_data['card'])
-            away_player1 = Player(player=form2.cleaned_data['player0'], team_name=home_team,
-                                  number_of_goals=form2.cleaned_data['number_of_goals0'],
-                                  number_of_assists=form2.cleaned_data['number_of_assists0'],
-                                  number_of_fouls=form2.cleaned_data['number_of_fouls0'],
-                                  card=form2.cleaned_data['card0'])
-            away_player.save()
-            away_player1.save()
-        if form3.is_valid():
-            match_score = Match(home_team_goals=form3.cleaned_data['home_team_goals'],
-                                away_team_goals=form3.cleaned_data['away_team_goals'])
-            match_score.save()
-            return HttpResponseRedirect('enter-results')
-    else:
-        form1 = PlayersMatchStatistic(team_name=home_team)
-        form2 = PlayersMatchStatistic(team_name=away_team)
-        form3 = MatchScore(instance=instance_match)
+                                               home_team__add_by=request.user).order_by('match_date')
 
-    return render(request, 'enter-the-results.html',
-                  {'form1': form1, 'form2': form2, 'form3': form3, 'match_objects': match_objects})
+
+    if request.method == "POST":
+        if (request.GET.get("home_team") != None or request.GET.get("away_team") != None):
+            home_team = request.GET.get("home_team")
+            away_team = request.GET.get("away_team")
+        else:
+            return HttpResponseRedirect('enter_results',messages.error(request, "Nothing to add."))
+        id = request.GET.get("id")
+        form1 = HomePlayersMatchStatistic(request.POST, home_team=home_team, prefix="form1")
+        form2 = AwayPlayersMatchStatistic(request.POST, away_team=away_team, prefix="form2")
+        home_team_goals = int(request.POST.get('form1-number_of_goals') or 0) \
+                          + int(request.POST.get('form1-number_of_goals0') or 0) \
+                          + int(request.POST.get('form1-number_of_goals1') or 0) \
+                          + int(request.POST.get('form1-number_of_goals2') or 0) \
+                          + int(request.POST.get('form1-number_of_goals3') or 0) \
+                          + int(request.POST.get('form1-number_of_goals4') or 0) \
+                          + int(request.POST.get('form1-number_of_goals5') or 0) \
+                          + int(request.POST.get('form1-number_of_goals6') or 0) \
+                          + int(request.POST.get('form1-number_of_goals7') or 0) \
+                          + int(request.POST.get('form1-number_of_goals8') or 0) \
+                          + int(request.POST.get('form1-number_of_goals9') or 0)
+        away_team_goals = int(request.POST.get('form2-number_of_goals') or 0) \
+                          + int(request.POST.get('form2-number_of_goals0') or 0) \
+                          + int(request.POST.get('form2-number_of_goals1') or 0) \
+                          + int(request.POST.get('form2-number_of_goals2') or 0) \
+                          + int(request.POST.get('form2-number_of_goals3') or 0) \
+                          + int(request.POST.get('form2-number_of_goals4') or 0) \
+                          + int(request.POST.get('form2-number_of_goals5') or 0) \
+                          + int(request.POST.get('form2-number_of_goals6') or 0) \
+                          + int(request.POST.get('form2-number_of_goals7') or 0) \
+                          + int(request.POST.get('form2-number_of_goals8') or 0) \
+                          + int(request.POST.get('form2-number_of_goals9') or 0)
+        match_results = Match.objects.all().filter(id=id).update(
+            home_team_goals=home_team_goals,
+            away_team_goals=away_team_goals,
+            status=True)
+
+        home_team_id = Team.objects.all().filter(team_name=home_team).get().id
+        away_team_id = Team.objects.all().filter(team_name=away_team).get().id
+
+        home_team_statistic_id = TeamStatistic.objects.all().filter(team_name=home_team).get().id
+        away_team_statistic_id = TeamStatistic.objects.all().filter(team_name=away_team).get().id
+
+        home_team_number_of_goals_for = TeamStatistic.objects.filter(
+            team_name=home_team).get().number_of_goals_for + home_team_goals
+        home_team_number_of_goals_against = TeamStatistic.objects.filter(
+            team_name=home_team).get().number_of_goals_against + away_team_goals
+        home_team_number_of_goals_diffrence = home_team_number_of_goals_for - home_team_number_of_goals_against
+
+        away_team_number_of_goals_for = TeamStatistic.objects.filter(
+            team_name=away_team).get().number_of_goals_for + away_team_goals
+        away_team_number_of_goals_against = TeamStatistic.objects.filter(
+            team_name=away_team).get().number_of_goals_against + home_team_goals
+        away_team_number_of_goals_diffrence = away_team_number_of_goals_for - away_team_number_of_goals_against
+
+        home_team_statistic_update = TeamStatistic.objects.all().filter(id=home_team_statistic_id).update(
+            game_played=Team.objects.all().filter(id=home_team_id).get().game_played + 1,
+            number_of_goals_for=home_team_number_of_goals_for,
+            number_of_goals_against=home_team_number_of_goals_against,
+            number_of_goals_diffrence=home_team_number_of_goals_diffrence)
+
+        away_team_statistic_update = TeamStatistic.objects.all().filter(id=away_team_statistic_id).update(
+            game_played=Team.objects.all().filter(id=away_team_id).get().game_played + 1,
+            number_of_goals_for=away_team_number_of_goals_for,
+            number_of_goals_against=away_team_number_of_goals_against,
+            number_of_goals_diffrence=away_team_number_of_goals_diffrence)
+
+        if (home_team_goals > away_team_goals):
+            home_team_statistic_update = TeamStatistic.objects.all().filter(id=home_team_statistic_id).update(
+                number_of_win=TeamStatistic.objects.filter(team_name=home_team).get().number_of_win + 1,
+                number_of_points=TeamStatistic.objects.filter(team_name=home_team).get().number_of_points + 3
+            )
+            away_team_statistic_update = TeamStatistic.objects.all().filter(id=away_team_statistic_id).update(
+                number_of_losses=TeamStatistic.objects.filter(team_name=away_team).get().number_of_losses + 1,
+                number_of_points=TeamStatistic.objects.filter(team_name=away_team).get().number_of_points + 0
+            )
+
+        elif home_team_goals == away_team_goals:
+            home_team_statistic_update = TeamStatistic.objects.all().filter(id=home_team_statistic_id).update(
+                number_of_draw=TeamStatistic.objects.filter(team_name=home_team).get().number_of_draw + 1,
+                number_of_points=TeamStatistic.objects.filter(team_name=home_team).get().number_of_points + 1
+            )
+            away_team_statistic_update = TeamStatistic.objects.all().filter(id=away_team_statistic_id).update(
+                number_of_draw=TeamStatistic.objects.filter(team_name=away_team).get().number_of_draw + 1,
+                number_of_points=TeamStatistic.objects.filter(team_name=away_team).get().number_of_points + 1
+            )
+        else:
+            home_team_statistic_update = TeamStatistic.objects.all().filter(id=home_team_statistic_id).update(
+                number_of_losses=TeamStatistic.objects.filter(team_name=home_team).get().number_of_losses + 1,
+                number_of_points=TeamStatistic.objects.filter(team_name=home_team).get().number_of_points + 0
+            )
+            away_team_statistic_update = TeamStatistic.objects.all().filter(id=away_team_statistic_id).update(
+                number_of_win=TeamStatistic.objects.filter(team_name=away_team).get().number_of_draw + 1,
+                number_of_points=TeamStatistic.objects.filter(team_name=away_team).get().number_of_points + 3
+            )
+        home_team_update = Team.objects.all().filter(id=home_team_id).update(
+            game_played=Team.objects.all().filter(id=home_team_id).get().game_played + 1,
+            number_of_goals_diffrence=TeamStatistic.objects.filter(team_name=home_team).get().number_of_goals_diffrence,
+            number_of_points=TeamStatistic.objects.filter(team_name=home_team).get().number_of_points,
+        )
+        away_team_update = Team.objects.all().filter(id=away_team_id).update(
+            game_played=Team.objects.all().filter(id=away_team_id).get().game_played + 1,
+            number_of_goals_diffrence=TeamStatistic.objects.filter(team_name=away_team).get().number_of_goals_diffrence,
+            number_of_points=TeamStatistic.objects.filter(team_name=away_team).get().number_of_points,
+        )
+
+        if form1.is_valid():
+            if (request.POST.get('form1-player') != None):
+                player_id = request.POST.get('form1-player')
+                home_player = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals'),
+                    number_of_assists=request.POST.get('form1-number_of_assists'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls'),
+                    card=request.POST.get('form1-card'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals') or 0)
+                )
+            if (request.POST.get('form1-player0') != None):
+                player_id = request.POST.get('form1-player0')
+                home_player1 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals0'),
+                    number_of_assists=request.POST.get('form1-number_of_assists0'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls0'),
+                    card=request.POST.get('form1-card0'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals0') or 0)
+                )
+            if (request.POST.get('form1-player1') != None):
+                player_id = request.POST.get('form1-player1')
+                home_player2 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals1'),
+                    number_of_assists=request.POST.get('form1-number_of_assists1'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls1'),
+                    card=request.POST.get('form1-card1'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals1') or 0)
+                )
+            if (request.POST.get('form1-player2') != None):
+                player_id = request.POST.get('form1-player2')
+                home_player3 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals2'),
+                    number_of_assists=request.POST.get('form1-number_of_assists2'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls2'),
+                    card=request.POST.get('form1-card2'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals2') or 0)
+                )
+            if (request.POST.get('form1-player3') != None):
+                player_id = request.POST.get('form1-player3')
+                home_player4 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals3'),
+                    number_of_assists=request.POST.get('form1-number_of_assists3'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls3'),
+                    card=request.POST.get('form1-card3'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals3') or 0)
+                )
+            if (request.POST.get('form1-player4') != None):
+                player_id = request.POST.get('form1-player4')
+                home_player5 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals4'),
+                    number_of_assists=request.POST.get('form1-number_of_assists4'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls4'),
+                    card=request.POST.get('form1-card4'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals4') or 0)
+                )
+            if (request.POST.get('form1-player5') != None):
+                player_id = request.POST.get('form1-player5')
+                home_player6 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals5'),
+                    number_of_assists=request.POST.get('form1-number_of_assists5'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls5'),
+                    card=request.POST.get('form1-card5'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals5') or 0)
+                )
+            if (request.POST.get('form1-player6') != None):
+                player_id = request.POST.get('form1-player6')
+                home_player7 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals6'),
+                    number_of_assists=request.POST.get('form1-number_of_assists6'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls6'),
+                    card=request.POST.get('form1-card6'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals6') or 0)
+                )
+            if (request.POST.get('form1-player7') != None):
+                player_id = request.POST.get('form1-player7')
+                home_player8 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals7'),
+                    number_of_assists=request.POST.get('form1-number_of_assists7'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls7'),
+                    card=request.POST.get('form1-card7'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals7') or 0)
+                )
+            if (request.POST.get('form1-player8') != None):
+                player_id = request.POST.get('form1-player8')
+                home_player9 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals8'),
+                    number_of_assists=request.POST.get('form1-number_of_assists8'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls8'),
+                    card=request.POST.get('form1-card8'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals8') or 0)
+                )
+            if (request.POST.get('form1-player9') != None):
+                player_id = request.POST.get('form1-player9')
+                home_player10 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=home_team,
+                    number_of_goals=request.POST.get('form1-number_of_goals9'),
+                    number_of_assists=request.POST.get('form1-number_of_assists9'),
+                    number_of_fouls=request.POST.get('form1-number_of_fouls9'),
+                    card=request.POST.get('form1-card9'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form1-number_of_goals9') or 0)
+                )
+        if form2.is_valid():
+            if (request.POST.get('form2-player') != None):
+                player_id = request.POST.get('form2-player')
+                away_player = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals'),
+                    number_of_assists=request.POST.get('form2-number_of_assists'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls'),
+                    card=request.POST.get('form2-card'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals') or 0)
+                )
+            if (request.POST.get('form2-player0') != None):
+                player_id = request.POST.get('form2-player0')
+                away_player1 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals0'),
+                    number_of_assists=request.POST.get('form2-number_of_assists0'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls0'),
+                    card=request.POST.get('form2-card0'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals0') or 0)
+                )
+            if (request.POST.get('form2-player1') != None):
+                player_id = request.POST.get('form2-player1')
+                away_player2 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals1'),
+                    number_of_assists=request.POST.get('form2-number_of_assists1'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls1'),
+                    card=request.POST.get('form2-card1'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals1') or 0)
+                )
+            if (request.POST.get('form2-player2') != None):
+                player_id = request.POST.get('form2-player2')
+                away_player3 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals2'),
+                    number_of_assists=request.POST.get('form2-number_of_assists2'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls2'),
+                    card=request.POST.get('form2-card2'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals2') or 0)
+                )
+            if (request.POST.get('form2-player3') != None):
+                player_id = request.POST.get('form2-player3')
+                away_player4 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals3'),
+                    number_of_assists=request.POST.get('form2-number_of_assists3'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls3'),
+                    card=request.POST.get('form2-card3'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals3') or 0)
+                )
+            if (request.POST.get('form2-player4') != None):
+                player_id = request.POST.get('form2-player4')
+                away_player5 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals4'),
+                    number_of_assists=request.POST.get('form2-number_of_assists4'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls4'),
+                    card=request.POST.get('form2-card4'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals4') or 0)
+                )
+            if (request.POST.get('form2-player5') != None):
+                player_id = request.POST.get('form2-player5')
+                away_player6 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals5'),
+                    number_of_assists=request.POST.get('form2-number_of_assists5'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls5'),
+                    card=request.POST.get('form2-card5'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals5') or 0)
+                )
+            if (request.POST.get('form2-player6') != None):
+                player_id = request.POST.get('form2-player6')
+                away_player7 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals6'),
+                    number_of_assists=request.POST.get('form2-number_of_assists6'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls6'),
+                    card=request.POST.get('form2-card6'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals6') or 0)
+                )
+            if (request.POST.get('form2-player7') != None):
+                player_id = request.POST.get('form2-player7')
+                away_player8 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals7'),
+                    number_of_assists=request.POST.get('form2-number_of_assists7'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls7'),
+                    card=request.POST.get('form2-card7'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals7') or 0)
+                )
+            if (request.POST.get('form2-player8') != None):
+                player_id = request.POST.get('form2-player8')
+                away_player9 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals8'),
+                    number_of_assists=request.POST.get('form2-number_of_assists8'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls8'),
+                    card=request.POST.get('form2-card8'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals8') or 0)
+                )
+            if (request.POST.get('form2-player9') != None):
+                player_id = request.POST.get('form2-player9')
+                away_player10 = PlayerStatistic.objects.all().filter(player_id=player_id).create(
+                    player=Player.objects.get(id=player_id),
+                    match=Match.objects.get(id=id),
+                    team_name=away_team,
+                    number_of_goals=request.POST.get('form2-number_of_goals9'),
+                    number_of_assists=request.POST.get('form2-number_of_assists9'),
+                    number_of_fouls=request.POST.get('form2-number_of_fouls9'),
+                    card=request.POST.get('form2-card9'))
+                Player.objects.all().filter(id=player_id).update(
+                    number_of_goals=Player.objects.all().filter(id=player_id).get().number_of_goals + int(
+                        request.POST.get('form2-number_of_goals9') or 0)
+                )
+            return HttpResponseRedirect('/')
+    else:
+        form1 = HomePlayersMatchStatistic(home_team=home_team, prefix="form1")
+        form2 = AwayPlayersMatchStatistic(away_team=away_team, prefix="form2")
+        return render(request, 'enter-the-results.html',
+                      {'form1': form1, 'form2': form2, 'match_objects': match_objects})
