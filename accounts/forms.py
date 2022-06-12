@@ -109,18 +109,10 @@ class AwayPlayersMatchStatistic(ModelForm):
         away_team = kwargs.pop('away_team', None)
         super(AwayPlayersMatchStatistic, self).__init__(*args, **kwargs)
         self.fields['player'].queryset = Player.objects.all().filter(team__team_name=away_team)
-
     class Meta:
         model = PlayerStatistic
         fields = ('player', 'number_of_goals', 'number_of_assists', 'number_of_fouls', 'card')
 
-
-
-
-class MatchScore(ModelForm):
-    class Meta:
-        model = Match
-        fields = ('home_team_goals', 'away_team_goals')
 
 # def clean(self, *args, **kwargs):
 #     data = super().clean(*args, **kwargs)

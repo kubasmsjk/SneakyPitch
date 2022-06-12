@@ -34,9 +34,6 @@
                     <tr>
                         <th scope="col" class="replace-team-name">Home Team</th>
                         <th id="game-score">
-                            {% for field in form1 %}
-                                {{ field }}
-                            {% endfor %}
                         </th>
                         <th scope="col" class="replace-team-name">Away Team</th>
                     </tr>
@@ -45,7 +42,7 @@
                     <tr>
                         <td>
                             <div class="clone-home-team">
-                                {% for field in form2 %}
+                                {% for field in form1 %}
                                     <div class="form-group">
                                         <label class="formGroupExampleInput"
                                                for="{{ field.auto_id }}">{{ field.label }}</label>
@@ -58,7 +55,7 @@
                         <td></td>
                         <td>
                             <div class="clone-away-team">
-                                {% for field in form3 %}
+                                {% for field in form2 %}
                                     <div class="form-group">
                                         <label class="formGroupExampleInput"
                                                for="{{ field.auto_id }}">{{ field.label }}</label>
