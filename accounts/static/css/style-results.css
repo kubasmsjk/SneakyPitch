@@ -89,15 +89,22 @@ th:last-child {
     width: 10%;
 }
 
+.message {
+    position: relative;
+    left: 35%;
+    text-align: center;
+    width: 30%;
+}
+
 #id_form1-player,
-#id_form2-player{
+#id_form2-player {
     width: 110px;
     border-radius: 7px;
     border-color: #ffffff;
 }
 
 #id_form1-card,
-#id_form2-card{
+#id_form2-card {
     width: 70px;
     border-radius: 7px;
     border-color: #ffffff;

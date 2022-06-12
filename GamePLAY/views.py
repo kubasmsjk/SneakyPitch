@@ -81,3 +81,19 @@ def shooters_rank_view(request):
     }
 
     return render(request, 'shooters-rank.html', context)
+
+def team_statistic_view(request):
+    team_statistic = TeamStatistic.objects.all()
+    context = {
+        'team_statistic': team_statistic
+    }
+
+    return render(request, 'team-statistic.html', context)
+
+def player_statistic_view(request):
+    player_statistic = PlayerStatistic.objects.all()
+    context = {
+        'player_statistic': player_statistic
+    }
+
+    return render(request, 'player-statistic.html', context)

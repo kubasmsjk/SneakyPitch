@@ -26,6 +26,8 @@ urlpatterns = [
                   path('queues/', queues_view, name='queues'),
                   path('teams/', teams_view, name='teams'),
                   path('shootersRank/', shooters_rank_view, name='shootersRank'),
+                  path('teamStatistic/', team_statistic_view, name='team-statistic'),
+                  path('playerStatistic/', player_statistic_view, name='player-statistic'),
                   path('accounts/', include('django.contrib.auth.urls')),
                   path('accounts/', include('accounts.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

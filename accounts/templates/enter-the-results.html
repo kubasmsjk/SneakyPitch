@@ -16,6 +16,20 @@
 {% block content %}
     <div class="content">
         <div class="heading-div"><h1 class="heading-h1">MATCH RESULTS</h1></div>
+        <div class="message">
+            {% if messages %}
+                {% for message in messages %}
+
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                onClick="refreshPage()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div class="right-menu">
             {% for o in match_objects %}
                 <a id="clicks"

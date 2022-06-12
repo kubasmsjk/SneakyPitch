@@ -180,9 +180,13 @@ def enter_results(request, user=None, id=None, home_team=None, away_team=None):
     match_objects = Match.objects.all().filter(match_date__lt=datetime.datetime.now(), status=False,
                                                home_team__add_by=request.user).order_by('match_date')
 
-    home_team = request.GET.get("home_team")
-    away_team = request.GET.get("away_team")
+
     if request.method == "POST":
+        if (request.GET.get("home_team") != None or request.GET.get("away_team") != None):
+            home_team = request.GET.get("home_team")
+            away_team = request.GET.get("away_team")
+        else:
+            return HttpResponseRedirect('enter_results',messages.error(request, "Nothing to add."))
         id = request.GET.get("id")
         form1 = HomePlayersMatchStatistic(request.POST, home_team=home_team, prefix="form1")
         form2 = AwayPlayersMatchStatistic(request.POST, away_team=away_team, prefix="form2")
@@ -223,17 +227,13 @@ def enter_results(request, user=None, id=None, home_team=None, away_team=None):
             team_name=home_team).get().number_of_goals_for + home_team_goals
         home_team_number_of_goals_against = TeamStatistic.objects.filter(
             team_name=home_team).get().number_of_goals_against + away_team_goals
-        home_team_number_of_goals_diffrence = TeamStatistic.objects.filter(
-            team_name=home_team).get().number_of_goals_diffrence + (
-                                                      home_team_number_of_goals_for - home_team_number_of_goals_against)
+        home_team_number_of_goals_diffrence = home_team_number_of_goals_for - home_team_number_of_goals_against
 
         away_team_number_of_goals_for = TeamStatistic.objects.filter(
             team_name=away_team).get().number_of_goals_for + away_team_goals
         away_team_number_of_goals_against = TeamStatistic.objects.filter(
             team_name=away_team).get().number_of_goals_against + home_team_goals
-        away_team_number_of_goals_diffrence = TeamStatistic.objects.filter(
-            team_name=away_team).get().number_of_goals_diffrence + (
-                                                      away_team_number_of_goals_for - away_team_number_of_goals_against)
+        away_team_number_of_goals_diffrence = away_team_number_of_goals_for - away_team_number_of_goals_against
 
         home_team_statistic_update = TeamStatistic.objects.all().filter(id=home_team_statistic_id).update(
             game_played=Team.objects.all().filter(id=home_team_id).get().game_played + 1,
@@ -282,8 +282,8 @@ def enter_results(request, user=None, id=None, home_team=None, away_team=None):
         )
         away_team_update = Team.objects.all().filter(id=away_team_id).update(
             game_played=Team.objects.all().filter(id=away_team_id).get().game_played + 1,
-            number_of_goals_diffrence=TeamStatistic.objects.filter(team_name=home_team).get().number_of_goals_diffrence,
-            number_of_points=TeamStatistic.objects.filter(team_name=home_team).get().number_of_points,
+            number_of_goals_diffrence=TeamStatistic.objects.filter(team_name=away_team).get().number_of_goals_diffrence,
+            number_of_points=TeamStatistic.objects.filter(team_name=away_team).get().number_of_points,
         )
 
         if form1.is_valid():

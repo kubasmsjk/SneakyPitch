@@ -102,7 +102,6 @@ class HomePlayersMatchStatistic(ModelForm):
         model = PlayerStatistic
         fields = ('player', 'number_of_goals', 'number_of_assists', 'number_of_fouls', 'card')
 
-
 class AwayPlayersMatchStatistic(ModelForm):
 
     def __init__(self, *args, **kwargs):

@@ -121,7 +121,6 @@ class PlayerStatistic(models.Model):
         verbose_name = "PlayerStatistic"
         verbose_name_plural = "PlayerStatistics"
 
-
 @receiver(post_save, sender=PlayerStatistic)
 def update_Player(sender, instance, created, **kwargs):
     if created:

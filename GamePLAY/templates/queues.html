@@ -30,134 +30,81 @@
 
 
             <div class="table-responsive">
-                <P><b>Number of queue: 1</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 1 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
+                <P class="queue-number">Number of queue: 1</P>
+                <table class="table table-striped custom-table">
+                    <tbody>
+                    {% for o in queue_objects %}
+                        {% if o.queue_number == 1 %}
                             <tr>
                                 <td>{{ o.home_team }}</td>
                                 <td>{{ o.match_score }}</td>
                                 <td>{{ o.visiting_team }}</td>
                                 <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
-                <P><b>Number of queue: 2</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 2 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <P class="queue-number">Number of queue: 2</P>
+                <table class="table table-striped custom-table">
+                    <tbody>
+                    {% for o in queue_objects %}
+                        {% if o.queue_number == 2 %}
                             <tr>
                                 <td>{{ o.home_team }}</td>
                                 <td>{{ o.match_score }}</td>
                                 <td>{{ o.visiting_team }}</td>
                                 <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
-                <P><b>Number of queue: 3</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 3 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <P class="queue-number">Number of queue: 3</P>
+                <table class="table table-striped custom-table">
+                    <tbody>
+                    {% for o in queue_objects %}
+                        {% if o.queue_number == 3 %}
                             <tr>
                                 <td>{{ o.home_team }}</td>
                                 <td>{{ o.match_score }}</td>
                                 <td>{{ o.visiting_team }}</td>
                                 <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
-                <P><b>Number of queue: 4</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 4 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <P class="queue-number">Number of queue: 4</P>
+                <table class="table table-striped custom-table">
+                    <tbody>
+                    {% for o in queue_objects %}
+                        {% if o.queue_number == 4 %}
                             <tr>
                                 <td>{{ o.home_team }}</td>
                                 <td>{{ o.match_score }}</td>
                                 <td>{{ o.visiting_team }}</td>
                                 <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
-                <P><b>Number of queue: 5</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 5 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <P class="queue-number">Number of queue: 5</P>
+                <table class="table table-striped custom-table">
+                    <tbody>
+                    {% for o in queue_objects %}
+                        {% if o.queue_number == 5 %}
                             <tr>
                                 <td>{{ o.home_team }}</td>
                                 <td>{{ o.match_score }}</td>
                                 <td>{{ o.visiting_team }}</td>
                                 <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
-                <P><b>Number of queue: 6</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 6 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
-                            <tr>
-                                <td>{{ o.home_team }}</td>
-                                <td>{{ o.match_score }}</td>
-                                <td>{{ o.visiting_team }}</td>
-                                <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
-                <P><b>Number of queue: 7</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 7 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
-                            <tr>
-                                <td>{{ o.home_team }}</td>
-                                <td>{{ o.match_score }}</td>
-                                <td>{{ o.visiting_team }}</td>
-                                <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
-                <P><b>Number of queue: 8</b></P>
-                {% for o in queue_objects %}
-                    {% if o.queue_number == 8 %}
-                        <table class="table table-striped custom-table">
-                            <tbody>
-                            <tr>
-                                <td>{{ o.home_team }}</td>
-                                <td>{{ o.match_score }}</td>
-                                <td>{{ o.visiting_team }}</td>
-                                <td>{{ o.match_date }}</td>
-                                <td>{{ o.queue_number }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
 
