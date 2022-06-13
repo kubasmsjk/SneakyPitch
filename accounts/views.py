@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
 from django.utils import timezone
+from django.urls import reverse
 
 
 def login_user(request):
@@ -212,6 +213,35 @@ def enter_results(request, user=None, id=None, home_team=None, away_team=None):
                           + int(request.POST.get('form2-number_of_goals7') or 0) \
                           + int(request.POST.get('form2-number_of_goals8') or 0) \
                           + int(request.POST.get('form2-number_of_goals9') or 0)
+
+        home_team_assists = int(request.POST.get('form1-number_of_assists') or 0) \
+                          + int(request.POST.get('form1-number_of_assists0') or 0) \
+                          + int(request.POST.get('form1-number_of_assists1') or 0) \
+                          + int(request.POST.get('form1-number_of_assists2') or 0) \
+                          + int(request.POST.get('form1-number_of_assists3') or 0) \
+                          + int(request.POST.get('form1-number_of_assists4') or 0) \
+                          + int(request.POST.get('form1-number_of_assists5') or 0) \
+                          + int(request.POST.get('form1-number_of_assists6') or 0) \
+                          + int(request.POST.get('form1-number_of_assists7') or 0) \
+                          + int(request.POST.get('form1-number_of_assists8') or 0) \
+                          + int(request.POST.get('form1-number_of_assists9') or 0)
+        away_team_assists = int(request.POST.get('form2-number_of_assists') or 0) \
+                            + int(request.POST.get('form2-number_of_assists0') or 0) \
+                            + int(request.POST.get('form2-number_of_assists1') or 0) \
+                            + int(request.POST.get('form2-number_of_assists2') or 0) \
+                            + int(request.POST.get('form2-number_of_assists3') or 0) \
+                            + int(request.POST.get('form2-number_of_assists4') or 0) \
+                            + int(request.POST.get('form2-number_of_assists5') or 0) \
+                            + int(request.POST.get('form2-number_of_assists6') or 0) \
+                            + int(request.POST.get('form2-number_of_assists7') or 0) \
+                            + int(request.POST.get('form2-number_of_assists8') or 0) \
+                            + int(request.POST.get('form2-number_of_assists9') or 0)
+        if (home_team_assists > home_team_goals):
+            url = reverse('enter-results',kwargs={})
+            return HttpResponseRedirect(url,messages.error(request, "No matching with data."))
+        elif (away_team_assists>away_team_goals):
+            url = reverse('enter-results',kwargs={})
+            return HttpResponseRedirect(url, messages.error(request, "No matching with data."))
         match_results = Match.objects.all().filter(id=id).update(
             home_team_goals=home_team_goals,
             away_team_goals=away_team_goals,

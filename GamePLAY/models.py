@@ -121,10 +121,8 @@ class PlayerStatistic(models.Model):
         verbose_name = "PlayerStatistic"
         verbose_name_plural = "PlayerStatistics"
 
-@receiver(post_save, sender=PlayerStatistic)
-def update_Player(sender, instance, created, **kwargs):
-    if created:
-        Player.objects.filter(pk=instance.pk).update(number_of_goals=instance.number_of_goals)
+    def __str__(self):
+        return str(self.card)
 
 
 class TeamStatistic(models.Model):
