@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,9 +94,29 @@ DATABASES = {
         'PASSWORD': '9c7b12739981d9ba8779bcd948456cbb2f63dc988aab5506568d5df4fa0049eb',
         'HOST': 'ec2-52-214-23-110.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
-    }
-}
 
+    },
+'TEST': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'localdjango',
+            'USER': 'postgres',
+            'PASSWORD': 'bartekxd12',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+
+}
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'localdjango',
+            'USER': 'postgres',
+            'PASSWORD': 'bartekxd12',
+            'HOST': 'localhost',
+            'PORT': '',
+
+    }
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
