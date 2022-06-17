@@ -11,6 +11,7 @@ body {
 strong {
     font-weight: 500;
 }
+
 a {
     color: #f35b3f;
     border-bottom: 1px dashed #f35b3f;
@@ -449,7 +450,8 @@ a.btn-customized-3 i {
     color: #fff;
     box-shadow: none;
 }
-.buttons-inline{
+
+.buttons-inline {
     display: inline-block;
 }
 
@@ -609,6 +611,11 @@ footer {
     font-weight: 300;
 }
 
+#loginBtn {
+    cursor: pointer;
+}
+
+
 button.btn-customized {
     margin-left: 5px;
     margin-right: 5px;
@@ -631,19 +638,25 @@ button.button-logout {
     z-index: 997;
 
 }
-#replace-me{
+
+#replace-me {
     font-size: 18px;
 
 }
-#password{
+
+#password {
     -webkit-text-security: disc;
 }
+
 #password1 {
     -webkit-text-security: disc;
 }
-#password2{
+
+#password2 {
+    margin-left: 20px;
     -webkit-text-security: disc;
 }
+
 /**** Register Form  ****/
 .form-register {
     background-color: #ffffff;
@@ -654,6 +667,7 @@ button.button-logout {
     height: auto;
     width: auto;
 }
+
 .form-floating input[type="text"] {
     background: none;
     border: 1px solid #545b62;
@@ -664,18 +678,22 @@ button.button-logout {
     color: #000000;
     border-radius: 4px;
 }
-.form-floating-register{
+
+.form-floating-register {
     padding-top: 5px;
     padding-left: 30px;
+    display: inline-block;
 }
+
 .input-register::placeholder {
     color: #0b2e13;
     font-weight: 300;
 }
-.one{
+
+.one {
     display: block;
 }
-.two{
+
+.two {
     display: none;
 }
-

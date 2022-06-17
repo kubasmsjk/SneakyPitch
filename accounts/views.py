@@ -7,7 +7,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
 from django.utils import timezone
 from django.urls import reverse
-
+from GamePLAY.forms import SearchForm
+import folium
+import geocoder
+from django.core.mail import send_mail
+from smtplib import SMTPException
+from GamePLAY.models import *
 
 def login_user(request):
     if request.method == "POST":
@@ -36,10 +41,6 @@ def logout_user(request):
 
 
 def register_user(request):
-    if request.method == 'GET':
-        form = CustomUserCreationForm()
-        context = {'form': form}
-        return render(request, 'register.html', context)
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -48,10 +49,48 @@ def register_user(request):
             messages.success(request, 'Account was created for ' + user)
             return redirect('main')
         else:
-            messages.error(request, 'Error Processing Your Request')
-            context = {'form': form}
-            # return redirect('main')
-            return render(request, 'register.html', context)
+
+            static_items = StaticItems.objects.all()
+            # map
+            if 'find' in request.POST and request.method == 'POST':
+                form_map = SearchForm(request.POST)
+                if form_map.is_valid():
+                    form_map.save()
+                    return redirect('/' + "#section-1")
+            else:
+                form_map = SearchForm()
+            address = Search.objects.all().last()
+            location = geocoder.osm(address)
+            lat = location.lat
+            lng = location.lng
+            country = location.country
+            if lat is None or lng is None:
+                address.delete()
+                return redirect('/' + "#base", messages.error(request, "This Club doesn't exist, try again"))
+            m = folium.Map(location=[lat, lng], zoom_start=7.0)
+            folium.Marker([lat, lng], tooltip='Click', popup=country,
+                          icon=folium.Icon(color='red', icon='futbol-o', prefix='fa')).add_to(m)
+            m = m._repr_html_()
+            context = {'static_items': static_items,
+                       'm': m,
+                       'form_map': form_map,
+                       'form': form
+                       }
+            # mail
+            if 'contact' in request.POST and request.method == 'POST':
+                email = request.POST['email']
+                subject = request.POST['subject']
+                message = request.POST['message']
+                if email == '' or subject == '' or message == '':
+                    messages.error(request, "Fields cannot be empty")
+                    return redirect('/' + '#base')
+                else:
+                    try:
+                        send_mail(subject, message, email, ['jakm5000@wp.pl'], fail_silently=False)
+                    except SMTPException:
+                        return redirect('/' + '#base', messages.error(request, "Invalid header found."))
+                    return redirect('/' + '#base', messages.success(request, "Thank you for your email"))
+            return render(request,'main.html',context)
 
     return render(request, 'register.html', {})
 
@@ -181,13 +220,12 @@ def enter_results(request, user=None, id=None, home_team=None, away_team=None):
     match_objects = Match.objects.all().filter(match_date__lt=datetime.datetime.now(), status=False,
                                                home_team__add_by=request.user).order_by('match_date')
 
-
     if request.method == "POST":
         if (request.GET.get("home_team") != None or request.GET.get("away_team") != None):
             home_team = request.GET.get("home_team")
             away_team = request.GET.get("away_team")
         else:
-            return HttpResponseRedirect('enter_results',messages.error(request, "Nothing to add."))
+            return HttpResponseRedirect('enter_results', messages.error(request, "Nothing to add."))
         id = request.GET.get("id")
         form1 = HomePlayersMatchStatistic(request.POST, home_team=home_team, prefix="form1")
         form2 = AwayPlayersMatchStatistic(request.POST, away_team=away_team, prefix="form2")
@@ -215,16 +253,16 @@ def enter_results(request, user=None, id=None, home_team=None, away_team=None):
                           + int(request.POST.get('form2-number_of_goals9') or 0)
 
         home_team_assists = int(request.POST.get('form1-number_of_assists') or 0) \
-                          + int(request.POST.get('form1-number_of_assists0') or 0) \
-                          + int(request.POST.get('form1-number_of_assists1') or 0) \
-                          + int(request.POST.get('form1-number_of_assists2') or 0) \
-                          + int(request.POST.get('form1-number_of_assists3') or 0) \
-                          + int(request.POST.get('form1-number_of_assists4') or 0) \
-                          + int(request.POST.get('form1-number_of_assists5') or 0) \
-                          + int(request.POST.get('form1-number_of_assists6') or 0) \
-                          + int(request.POST.get('form1-number_of_assists7') or 0) \
-                          + int(request.POST.get('form1-number_of_assists8') or 0) \
-                          + int(request.POST.get('form1-number_of_assists9') or 0)
+                            + int(request.POST.get('form1-number_of_assists0') or 0) \
+                            + int(request.POST.get('form1-number_of_assists1') or 0) \
+                            + int(request.POST.get('form1-number_of_assists2') or 0) \
+                            + int(request.POST.get('form1-number_of_assists3') or 0) \
+                            + int(request.POST.get('form1-number_of_assists4') or 0) \
+                            + int(request.POST.get('form1-number_of_assists5') or 0) \
+                            + int(request.POST.get('form1-number_of_assists6') or 0) \
+                            + int(request.POST.get('form1-number_of_assists7') or 0) \
+                            + int(request.POST.get('form1-number_of_assists8') or 0) \
+                            + int(request.POST.get('form1-number_of_assists9') or 0)
         away_team_assists = int(request.POST.get('form2-number_of_assists') or 0) \
                             + int(request.POST.get('form2-number_of_assists0') or 0) \
                             + int(request.POST.get('form2-number_of_assists1') or 0) \
@@ -237,10 +275,10 @@ def enter_results(request, user=None, id=None, home_team=None, away_team=None):
                             + int(request.POST.get('form2-number_of_assists8') or 0) \
                             + int(request.POST.get('form2-number_of_assists9') or 0)
         if (home_team_assists > home_team_goals):
-            url = reverse('enter-results',kwargs={})
-            return HttpResponseRedirect(url,messages.error(request, "No matching with data."))
-        elif (away_team_assists>away_team_goals):
-            url = reverse('enter-results',kwargs={})
+            url = reverse('enter-results', kwargs={})
+            return HttpResponseRedirect(url, messages.error(request, "No matching with data."))
+        elif (away_team_assists > away_team_goals):
+            url = reverse('enter-results', kwargs={})
             return HttpResponseRedirect(url, messages.error(request, "No matching with data."))
         match_results = Match.objects.all().filter(id=id).update(
             home_team_goals=home_team_goals,
