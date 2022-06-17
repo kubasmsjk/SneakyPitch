@@ -85,40 +85,37 @@ th:last-child {
 
 }
 
-
 #game-score {
     width: 10%;
 }
 
-#id_home_team_goals {
-    width: 50px;
-    float: left;
-    border-radius: 7px;
-    border-color: #ffffff;
+.message {
+    position: relative;
+    left: 35%;
+    text-align: center;
+    width: 30%;
 }
 
-#id_away_team_goals {
-    width: 50px;
-    float: right;
-    border-radius: 7px;
-    border-color: #ffffff;
-}
-
-#id_player {
+#id_form1-player,
+#id_form2-player {
     width: 110px;
     border-radius: 7px;
     border-color: #ffffff;
 }
 
-#id_card {
+#id_form1-card,
+#id_form2-card {
     width: 70px;
     border-radius: 7px;
     border-color: #ffffff;
 }
 
-#id_number_of_fouls,
-#id_number_of_goals,
-#id_number_of_assists {
+#id_form1-number_of_fouls,
+#id_form1-number_of_goals,
+#id_form1-number_of_assists,
+#id_form2-number_of_fouls,
+#id_form2-number_of_goals,
+#id_form2-number_of_assists {
 
     width: 50px;
     border-radius: 7px;
