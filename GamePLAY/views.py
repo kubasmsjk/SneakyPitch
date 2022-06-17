@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import SearchForm
 from .models import *
-from .models import Search
 from django.core.mail import send_mail
 from smtplib import SMTPException
 import folium
@@ -14,12 +13,12 @@ def main_view(request):
     static_items = StaticItems.objects.all()
     # map
     if 'find' in request.POST and request.method == 'POST':
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            form.save()
+        form_map = SearchForm(request.POST)
+        if form_map.is_valid():
+            form_map.save()
             return redirect('/' + "#section-1")
     else:
-        form = SearchForm()
+        form_map = SearchForm()
     address = Search.objects.all().last()
     location = geocoder.osm(address)
     lat = location.lat
@@ -34,7 +33,7 @@ def main_view(request):
     m = m._repr_html_()
     context = {'static_items': static_items,
                'm': m,
-               'form': form,
+               'form_map': form_map,
                }
     # mail
     if 'contact' in request.POST and request.method == 'POST':
@@ -82,6 +81,7 @@ def shooters_rank_view(request):
 
     return render(request, 'shooters-rank.html', context)
 
+
 def team_statistic_view(request):
     team_statistic = TeamStatistic.objects.all()
     context = {
@@ -90,6 +90,7 @@ def team_statistic_view(request):
 
     return render(request, 'team-statistic.html', context)
 
+
 def player_statistic_view(request):
     player_statistic = PlayerStatistic.objects.all()
     context = {
@@ -97,3 +98,4 @@ def player_statistic_view(request):
     }
 
     return render(request, 'player-statistic.html', context)
+

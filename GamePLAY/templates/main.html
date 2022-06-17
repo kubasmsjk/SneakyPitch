@@ -74,7 +74,7 @@
                         <a href="{% url 'team-statistic' %}">Team statistic</a>
                     </li>
                     <li>
-                        <a href="{% url 'player-statistic' %}" >Player statistics</a>
+                        <a href="{% url 'player-statistic' %}">Player statistics</a>
                     </li>
                 </ul>
             </li>
@@ -119,25 +119,29 @@
                     {% if user.is_authenticated %}
                         {% include "registration/logout.html" %}
                     {% else %}
-                        <div class="one">{% include "registration/login.html" %}</div>
-                        <div class="two">{% include "register.html" %}</div>
-                    {% endif %}
-                    {% if messages %}
-                        {% for message in messages %}
-
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                {{ message }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="refreshPage()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        {% endfor %}
+                        {% if form.errors %}
+                            <div class="one">{% include "register.html" %}</div>
+                        {% else %}
+                            <div class="one">{% include "registration/login.html" %}</div>
+                            <div class="two">{% include "register.html" %}</div>
+                        {% endif %}
                     {% endif %}
                 </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                    onClick="refreshPage()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
         </div>
-           <!-- Section 1 -->
+            <!-- Section 1 -->
             <div class="section-1-container section-container" id="section-1">
                 <div class="container">
                     <div class="row">
@@ -156,9 +160,10 @@
                                         <form method="POST">
                                             {% csrf_token %}
                                             <div class="form-group">
-                                                {{ form }}
+                                                {{ form_map }}
                                             </div>
-                                            <button  type="submit" name="find" id="find-button" class="btn btn-primary btn-customized">
+                                            <button type="submit" name="find" id="find-button"
+                                                    class="btn btn-primary btn-customized">
                                                 Find
                                             </button>
                                         </form>
@@ -218,8 +223,8 @@
         </div>
         </div>
         {% endblock sidebar %}
-    {% block content %}
-    {% endblock content %}
+        {% block content %}
+        {% endblock content %}
         <!-- Footer -->
         <footer class="footer-container">
 
