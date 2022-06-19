@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)3q%gno%qk^ar__%whm%9w(7-y8#)oo!fhea&pzeiuhw#w79++'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
@@ -32,7 +32,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'postmaster@sandbox7eb52872a4594bbfa3c8c9d552339616.mailgun.org'
 EMAIL_HOST_PASSWORD = '33ba054e6ddcd950dfc75587011635c2-5e7fba0f-2e6f5554'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

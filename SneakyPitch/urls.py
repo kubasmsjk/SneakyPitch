@@ -30,4 +30,8 @@ urlpatterns = [
                   path('playerStatistic/', player_statistic_view, name='player-statistic'),
                   path('accounts/', include('django.contrib.auth.urls')),
                   path('accounts/', include('accounts.urls')),
+                  path('404/', custom_page_not_found_view, name='404'),
+                  path('500/', custom_error_view, name='500'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+handler404 = 'GamePLAY.views.custom_page_not_found_view'
+handler500 = 'GamePLAY.views.custom_error_view'
