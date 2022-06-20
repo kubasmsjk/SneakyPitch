@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import sys
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,17 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)3q%gno%qk^ar__%whm%9w(7-y8#)oo!fhea&pzeiuhw#w79++'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', cast=bool, default=True)
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'postmaster@sandbox7eb52872a4594bbfa3c8c9d552339616.mailgun.org'
-EMAIL_HOST_PASSWORD = '33ba054e6ddcd950dfc75587011635c2-5e7fba0f-2e6f5554'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'SneakyPitch.wsgi.application'
+# WSGI_APPLICATION = 'SneakyPitch.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -89,32 +90,32 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd7sjh596h3kfk9',
-        'USER': 'chhmrlmpqnnsfv',
-        'PASSWORD': '9c7b12739981d9ba8779bcd948456cbb2f63dc988aab5506568d5df4fa0049eb',
-        'HOST': 'ec2-52-214-23-110.eu-west-1.compute.amazonaws.com',
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
         'PORT': '5432',
 
     },
-'TEST': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'localdjango',
-            'USER': 'postgres',
-            'PASSWORD': 'bartekxd12',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
+    'TEST': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'localdjango',
+        'USER': 'postgres',
+        'PASSWORD': 'bartekxd12',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 
 }
 if 'test' in sys.argv:
     DATABASES['default'] = {
 
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'localdjango',
-            'USER': 'postgres',
-            'PASSWORD': 'bartekxd12',
-            'HOST': 'localhost',
-            'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'localdjango',
+        'USER': 'postgres',
+        'PASSWORD': 'bartekxd12',
+        'HOST': 'localhost',
+        'PORT': '',
 
     }
 # Password validation
@@ -166,5 +167,5 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 SECURE_REFERRER_POLICY = 'none'
 
-RECAPTCHA_PUBLIC_KEY = '6LcjIi0gAAAAABV5sG_4t5jdd5AS3OuESsr8cglK'
-RECAPTCHA_PRIVATE_KEY = '6LcjIi0gAAAAAO9N1nHAnyVKms_c-hI9eJL3sBoT'
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
