@@ -31,7 +31,7 @@ def login_user(request):
             messages.success(request, "Invalid username or password.")
             return redirect('main')
     form = AuthenticationForm()
-    return render(request, 'registration/login.html', context={"login_form": form})
+    return render(request, 'registration/login.html', status=200, context={"login_form": form})
 
 
 def logout_user(request):
@@ -39,7 +39,17 @@ def logout_user(request):
     messages.success(request, "You were logged out!")
     return redirect('main')
 
-
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
+            return redirect('main')
+        else:
+            return render(request, 'register.html')
+    return render(request, 'register.html',status=200)
 def register_user(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
